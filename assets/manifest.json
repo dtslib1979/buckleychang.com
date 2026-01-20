@@ -3,19 +3,21 @@
   "short_name": "Buckley Chang",
   "description": "Reality Interface for the AI Economy - Parksy World",
   "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#0a0f14",
   "theme_color": "#0a0f14",
-  "orientation": "portrait-primary",
-  "categories": ["business", "finance"],
-  "lang": "ko",
   "icons": [
     {
       "src": "icons/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    },
+    {
+      "src": "icons/og-image.svg",
+      "sizes": "1200x630",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }
