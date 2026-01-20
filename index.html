@@ -464,6 +464,84 @@
       transform: translateY(-2px);
     }
 
+    /* 사업자등록증 */
+    .card-license-section {
+      margin-top: 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-license-toggle {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    .card-license-toggle:hover {
+      color: var(--gold);
+    }
+
+    .license-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.9);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .license-modal.show {
+      display: flex;
+    }
+
+    .license-modal-content {
+      position: relative;
+      max-width: 500px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+    }
+
+    .license-modal-content img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+    }
+
+    .license-close {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 32px;
+      height: 32px;
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .license-close:hover {
+      transform: scale(1.1);
+    }
+
     .card-footer-note {
       text-align: center;
       margin-top: var(--space-md);
@@ -785,9 +863,22 @@
           Contact
         </a>
       </div>
+
+      <!-- Business License -->
+      <div class="card-license-section">
+        <button class="card-license-toggle" onclick="toggleLicense()">사업자등록증 보기</button>
+      </div>
     </article>
 
     <p class="card-footer-note">Tap card to copy link</p>
+  </div>
+
+  <!-- 사업자등록증 모달 -->
+  <div class="license-modal" id="licenseModal" onclick="closeLicenseModal(event)">
+    <div class="license-modal-content">
+      <button class="license-close" onclick="toggleLicense()">&times;</button>
+      <img src="./assets/icons/business-license.svg" alt="사업자등록증">
+    </div>
   </div>
 
   <!-- Services Showcase -->
@@ -871,6 +962,18 @@ businessCard.addEventListener('click', function(e) {
     showToast('링크가 복사되었습니다');
   });
 });
+
+// 사업자등록증 모달
+function toggleLicense() {
+  var modal = document.getElementById('licenseModal');
+  modal.classList.toggle('show');
+}
+
+function closeLicenseModal(e) {
+  if (e.target === e.currentTarget) {
+    toggleLicense();
+  }
+}
 
 // 연락처 저장
 function saveContact() {
