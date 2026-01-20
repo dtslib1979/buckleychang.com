@@ -1,0 +1,34 @@
+{
+  "name": "Buckley Chang",
+  "domain": "buckleychang.com",
+  "title": "Reality Interface for the AI Economy",
+  "role": "CPA",
+  "company": "Parksy World",
+  "version": "1.0",
+  "established": "2026-01-20",
+  "status": "active",
+  "branch_id": "buckleychang",
+  "hq_repo": "dtslib1979/dtslib-branch",
+  "zones": {
+    "green": {
+      "label": "No Intervention",
+      "condition": "개인 크리에이터, 초기 수익, 국내 플랫폼"
+    },
+    "yellow": {
+      "label": "Auto-Review",
+      "condition": "Trigger 1개 이상 충족"
+    },
+    "red": {
+      "label": "Full Command",
+      "condition": "법인/지분/IP분리/매각"
+    }
+  },
+  "triggers": {
+    "monthly_revenue": 3000000,
+    "foreign_payment": 1,
+    "employees": 1,
+    "ip_separation": true,
+    "entity_inquiry": true
+  },
+  "priority_order": ["tax", "legal", "operational"]
+}
