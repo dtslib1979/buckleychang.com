@@ -18,6 +18,7 @@
       --green: #22c55e;
       --yellow: #eab308;
       --red: #ef4444;
+      --info: #5bc0eb;
       --text: #f8fafc;
       --text-secondary: rgba(248,250,252,.7);
       --text-muted: rgba(248,250,252,.5);
@@ -134,7 +135,6 @@
       margin-bottom: 8px;
       color: var(--gold);
       letter-spacing: 0.05em;
-      text-shadow: 0 2px 8px rgba(201,162,39,.3);
     }
 
     .portal-subtitle {
@@ -145,6 +145,65 @@
       text-transform: uppercase;
       opacity: 0.8;
     }
+
+    /* ===== SECTION ===== */
+    .section { margin-bottom: 24px; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 5px 12px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title { font-size: 18px; font-weight: 700; }
+
+    /* ===== APK LIST ===== */
+    .apk-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .apk-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      background: var(--bg-elevated);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: all 0.2s;
+      color: var(--text);
+    }
+
+    .apk-item:hover { border-color: var(--gold); background: var(--bg-card); }
+
+    .apk-icon {
+      font-size: 28px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold-dim);
+      border-radius: var(--radius-md);
+      flex-shrink: 0;
+    }
+
+    .apk-content { flex: 1; min-width: 0; }
+    .apk-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .apk-desc { font-size: 13px; color: var(--text-secondary); }
+    .apk-download { font-size: 22px; color: var(--text-muted); transition: all 0.2s; }
+    .apk-item:hover .apk-download { color: var(--gold); }
+    .apk-note { font-size: 13px; color: var(--text-secondary); margin-top: 12px; padding-left: 4px; }
 
     /* ===== ACCORDION ===== */
     .accordion { margin-bottom: 14px; }
@@ -208,7 +267,7 @@
 
     .accordion.open .accordion-content { display: block; }
 
-    /* ===== SUB-CATEGORIES (koosy style) ===== */
+    /* ===== SUB-CATEGORIES ===== */
     .sub-category { margin-bottom: 16px; }
     .sub-category:last-child { margin-bottom: 0; }
 
@@ -246,19 +305,13 @@
       background: var(--gold-dim);
     }
 
-    .zone-chip {
-      font-weight: 600;
-    }
-
+    .zone-chip { font-weight: 600; }
     .zone-chip.green { border-color: var(--green); color: var(--green); }
     .zone-chip.yellow { border-color: var(--yellow); color: var(--yellow); }
     .zone-chip.red { border-color: var(--red); color: var(--red); }
 
-    /* ===== TOOL CARDS (buddies.kr style) ===== */
-    .tool-grid {
-      display: grid;
-      gap: 10px;
-    }
+    /* ===== TOOL CARDS ===== */
+    .tool-grid { display: grid; gap: 10px; }
 
     .tool-card {
       display: flex;
@@ -273,48 +326,24 @@
       transition: all 0.2s;
     }
 
-    .tool-card:hover {
-      border-color: var(--gold);
-      background: var(--gold-dim);
-    }
+    .tool-card:hover { border-color: var(--gold); background: var(--gold-dim); }
 
-    .tool-icon {
-      font-size: 28px;
-      width: 48px;
-      text-align: center;
-    }
-
+    .tool-icon { font-size: 28px; width: 48px; text-align: center; }
     .tool-info { flex: 1; }
-
-    .tool-name {
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .tool-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .tool-arrow {
-      font-size: 18px;
-      color: var(--text-muted);
-    }
-
-    .tool-card:hover .tool-arrow {
-      color: var(--gold);
-    }
+    .tool-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .tool-desc { font-size: 12px; color: var(--text-muted); }
+    .tool-arrow { font-size: 18px; color: var(--text-muted); }
+    .tool-card:hover .tool-arrow { color: var(--gold); }
 
     /* ===== SECTION DIVIDER ===== */
     .section-divider {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 24px 0 16px;
+      margin: 20px 0 14px;
     }
 
-    .section-badge {
+    .divider-badge {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -325,13 +354,191 @@
       text-transform: uppercase;
     }
 
-    .section-line {
+    .divider-line {
       flex: 1;
       height: 1px;
       background: linear-gradient(90deg, var(--gold), transparent);
     }
 
-    /* ===== BACK LINK ===== */
+    /* ===== CONSOLE LINKS ===== */
+    .console-links { display: flex; flex-direction: column; gap: 8px; }
+
+    .console-link-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all .2s ease;
+    }
+
+    .console-link-item:hover { border-color: var(--gold); background: var(--bg-card); }
+
+    .console-icon { font-size: 24px; }
+    .console-text { flex: 1; }
+    .console-name { font-weight: 600; font-size: 15px; }
+    .console-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .console-arrow { color: var(--gold); font-size: 18px; }
+
+    /* ===== HOTLINE ===== */
+    .section-hotline {
+      background: linear-gradient(135deg, rgba(201,162,39,0.05) 0%, transparent 50%);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      margin-top: 20px;
+    }
+
+    .badge-hotline {
+      background: linear-gradient(135deg, #D4AF37 0%, #F0C850 100%);
+      color: var(--bg);
+      font-weight: 800;
+    }
+
+    .hq-with { font-size: 12px; font-weight: 400; color: var(--text-muted); margin: 0 4px; }
+
+    .hotline-tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      margin-bottom: 20px;
+    }
+
+    .hq-link { color: var(--gold); }
+    .hq-link:hover { text-decoration: underline; }
+
+    /* ===== BRANCH NETWORK ===== */
+    .branch-network { margin-top: 16px; }
+
+    .branch-network-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .branch-network-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .branch-network-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .branch-card-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .branch-card-mini:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+    .branch-avatar-mini {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+    }
+
+    .branch-info-mini { flex: 1; min-width: 0; }
+    .branch-name-mini { font-size: 13px; font-weight: 600; color: var(--text); }
+    .branch-status-mini { font-size: 10px; color: var(--text-muted); }
+    .branch-status-mini.active { color: var(--green); }
+
+    /* ===== BRIEFING GRID ===== */
+    .briefing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .briefing-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .briefing-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .briefing-icon { font-size: 24px; }
+    .briefing-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+    .briefing-item:hover .briefing-label { color: var(--gold); }
+
+    /* ===== NOTICE BOARD ===== */
+    .notice-board {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .notice-header {
+      background: rgba(201, 162, 39, 0.1);
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .notice-title { font-size: 13px; font-weight: 600; color: var(--gold); }
+
+    .notice-list { max-height: 200px; overflow-y: auto; }
+
+    .notice-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .notice-item:last-child { border-bottom: none; }
+    .notice-item:hover { background: rgba(201, 162, 39, 0.05); }
+
+    /* ===== EXIT SECTION ===== */
+    .section-exit {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .badge-system {
+      background: rgba(255,255,255,.12);
+      color: var(--text-muted);
+    }
+
+    .exit-content {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .exit-content p { margin-bottom: 12px; }
+    .exit-content .highlight { color: var(--gold); font-weight: 600; }
+
+    /* ===== PORTAL FOOTER ===== */
     .portal-footer {
       text-align: center;
       padding-top: 32px;
@@ -358,6 +565,53 @@
       border-color: var(--gold);
       color: var(--gold);
     }
+
+    /* ===== GALAXY EXPRESS ===== */
+    .galaxy-express {
+      margin-top: 28px;
+      padding: 20px 16px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .express-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      margin-top: 16px;
+    }
+
+    .branch-stations {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .branch-station {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      font-size: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .branch-station:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .branch-node { font-size: 24px; }
+    .branch-label { font-size: 11px; }
   </style>
 </head>
 <body>
@@ -380,8 +634,43 @@
       <p class="portal-subtitle">Buckley Chang Operations Center</p>
     </header>
 
-    <!-- 1인 콘텐츠 회사 (koosy style accordion) -->
-    <div class="accordion open" id="accordionCreator">
+    <!-- 생산성 도구 APK -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-badge">APK</span>
+        <h2 class="section-title">생산성 도구</h2>
+      </div>
+      <div class="apk-list">
+        <a href="https://nightly.link/dtslib1979/dtslib-apk-lab/workflows/build-parksy-axis/main/parksy-axis-debug.zip" class="apk-item" download>
+          <span class="apk-icon">📡</span>
+          <div class="apk-content">
+            <p class="apk-name">Parksy Axis</p>
+            <p class="apk-desc">방송용 오버레이</p>
+          </div>
+          <span class="apk-download">⬇</span>
+        </a>
+        <a href="https://nightly.link/dtslib1979/dtslib-apk-lab/workflows/build-laser-pen/main/laser-pen-overlay-debug.zip" class="apk-item" download>
+          <span class="apk-icon">✏️</span>
+          <div class="apk-content">
+            <p class="apk-name">Parksy Pen</p>
+            <p class="apk-desc">레이저펜 판서</p>
+          </div>
+          <span class="apk-download">⬇</span>
+        </a>
+        <a href="https://nightly.link/dtslib1979/dtslib-apk-lab/workflows/build-capture-pipeline/main/capture-pipeline-debug.zip" class="apk-item" download>
+          <span class="apk-icon">📸</span>
+          <div class="apk-content">
+            <p class="apk-name">Parksy Capture</p>
+            <p class="apk-desc">텍스트 캡처</p>
+          </div>
+          <span class="apk-download">⬇</span>
+        </a>
+      </div>
+      <p class="apk-note">* ZIP 다운로드 → 압축 해제 → APK 설치</p>
+    </section>
+
+    <!-- 1인 콘텐츠 회사 -->
+    <div class="accordion" id="accordionCreator">
       <button class="accordion-header" onclick="toggleAccordion('accordionCreator')">
         <span class="accordion-step">📺</span>
         <div class="accordion-info">
@@ -399,7 +688,6 @@
             <span class="sub-chip zone-chip red">🔴 RED</span>
           </div>
         </div>
-
         <div class="sub-category">
           <div class="sub-label">Entity Services</div>
           <div class="sub-items">
@@ -409,7 +697,6 @@
             <span class="sub-chip">IP 분리</span>
           </div>
         </div>
-
         <div class="sub-category">
           <div class="sub-label">Tax Services</div>
           <div class="sub-items">
@@ -419,7 +706,6 @@
             <span class="sub-chip">원천징수</span>
           </div>
         </div>
-
         <div class="sub-category">
           <div class="sub-label">Revenue Streams</div>
           <div class="sub-items">
@@ -432,7 +718,7 @@
       </div>
     </div>
 
-    <!-- Client Operations (buddies.kr style accordion) -->
+    <!-- Client Operations -->
     <div class="accordion" id="accordionOperations">
       <button class="accordion-header" onclick="toggleAccordion('accordionOperations')">
         <span class="accordion-step">⚙️</span>
@@ -444,8 +730,8 @@
       </button>
       <div class="accordion-content">
         <div class="section-divider">
-          <span class="section-badge">Zone Management</span>
-          <span class="section-line"></span>
+          <span class="divider-badge">Zone Management</span>
+          <span class="divider-line"></span>
         </div>
         <div class="tool-grid">
           <a href="#" class="tool-card">
@@ -465,10 +751,9 @@
             <span class="tool-arrow">→</span>
           </a>
         </div>
-
         <div class="section-divider">
-          <span class="section-badge">Approval System</span>
-          <span class="section-line"></span>
+          <span class="divider-badge">Approval System</span>
+          <span class="divider-line"></span>
         </div>
         <div class="tool-grid">
           <a href="#" class="tool-card">
@@ -488,10 +773,9 @@
             <span class="tool-arrow">→</span>
           </a>
         </div>
-
         <div class="section-divider">
-          <span class="section-badge">Network</span>
-          <span class="section-line"></span>
+          <span class="divider-badge">Network</span>
+          <span class="divider-line"></span>
         </div>
         <div class="tool-grid">
           <a href="#" class="tool-card">
@@ -506,7 +790,7 @@
       </div>
     </div>
 
-    <!-- Documents (protocol guides) -->
+    <!-- Documents -->
     <div class="accordion" id="accordionDocs">
       <button class="accordion-header" onclick="toggleAccordion('accordionDocs')">
         <span class="accordion-step">📚</span>
@@ -554,9 +838,162 @@
       </div>
     </div>
 
-    <footer class="portal-footer">
-      <a href="../" class="back-btn">← Return to Main</a>
-    </footer>
+    <!-- Console Panel -->
+    <div class="accordion" id="accordionConsole">
+      <button class="accordion-header" onclick="toggleAccordion('accordionConsole')">
+        <span class="accordion-step">🔗</span>
+        <div class="accordion-info">
+          <div class="accordion-title">Console Panel</div>
+          <div class="accordion-desc">외부 링크 & 자동화 타겟</div>
+        </div>
+        <span class="accordion-toggle">▼</span>
+      </button>
+      <div class="accordion-content">
+        <div class="console-links">
+          <a href="https://github.com/dtslib1979/buckleychang.com" target="_blank" class="console-link-item">
+            <span class="console-icon">🐙</span>
+            <div class="console-text">
+              <div class="console-name">GitHub</div>
+              <div class="console-desc">buckleychang.com 레포지토리</div>
+            </div>
+            <span class="console-arrow">→</span>
+          </a>
+          <a href="https://buckleychang.com" target="_blank" class="console-link-item">
+            <span class="console-icon">🌐</span>
+            <div class="console-text">
+              <div class="console-name">Website</div>
+              <div class="console-desc">buckleychang.com</div>
+            </div>
+            <span class="console-arrow">→</span>
+          </a>
+          <a href="https://dtslib.com" target="_blank" class="console-link-item">
+            <span class="console-icon">🏛️</span>
+            <div class="console-text">
+              <div class="console-name">HQ</div>
+              <div class="console-desc">DTSLIB 본사</div>
+            </div>
+            <span class="console-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOTLINE HQ -->
+    <section class="section section-hotline">
+      <div class="section-header">
+        <span class="section-badge badge-hotline">HOTLINE</span>
+        <h2 class="section-title">BUCKLEY <span class="hq-with">with</span> HQ</h2>
+      </div>
+      <p class="hotline-tagline">본사 직통 기록 채널 · <a href="https://dtslib.com" target="_blank" class="hq-link">dtslib.com</a></p>
+
+      <!-- HQ 브리핑 -->
+      <div class="accordion" id="accordionBriefing">
+        <button class="accordion-header" onclick="toggleAccordion('accordionBriefing')">
+          <span class="accordion-step">📺</span>
+          <div class="accordion-info">
+            <div class="accordion-title">HQ 브리핑</div>
+            <div class="accordion-desc">본사 운영 지침과 전략 브리핑</div>
+          </div>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <div class="notice-board">
+            <div class="notice-header">
+              <span class="notice-title">📢 HQ 공지사항</span>
+            </div>
+            <div class="notice-list" id="noticeList">
+              <div style="padding:12px;color:var(--text-muted);font-size:12px;">공지사항 로딩 중...</div>
+            </div>
+          </div>
+          <div class="briefing-grid">
+            <a href="https://koosy.kr/staff/briefing.html" class="briefing-item" target="_blank">
+              <span class="briefing-icon">🎬</span>
+              <span class="briefing-label">튜토리얼</span>
+            </a>
+            <a href="https://koosy.kr/staff/archive.html" class="briefing-item" target="_blank">
+              <span class="briefing-icon">📚</span>
+              <span class="briefing-label">전체 아카이브</span>
+            </a>
+          </div>
+          <div class="branch-network">
+            <div class="branch-network-header">
+              <span>🌐</span>
+              <span class="branch-network-title">DTSLIB 계열사 네트워크</span>
+            </div>
+            <div class="branch-network-grid">
+              <a href="https://koosy.kr" target="_blank" class="branch-card-mini">
+                <div class="branch-info-mini">
+                  <div class="branch-name-mini">KOOSY</div>
+                  <div class="branch-status-mini active">● active</div>
+                </div>
+              </a>
+              <a href="https://buddies.kr" target="_blank" class="branch-card-mini">
+                <div class="branch-info-mini">
+                  <div class="branch-name-mini">BUDDIES</div>
+                  <div class="branch-status-mini active">● active</div>
+                </div>
+              </a>
+              <a href="https://buckleychang.com" target="_blank" class="branch-card-mini" style="border-color:var(--gold);background:rgba(201,162,39,0.08);">
+                <div class="branch-info-mini">
+                  <div class="branch-name-mini">BUCKLEY</div>
+                  <div class="branch-status-mini active">● active (현재)</div>
+                </div>
+              </a>
+              <a href="https://dtslib.com" target="_blank" class="branch-card-mini">
+                <div class="branch-info-mini">
+                  <div class="branch-name-mini">HQ</div>
+                  <div class="branch-status-mini active">● headquarter</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exit & Transfer -->
+    <section class="section section-exit">
+      <div class="section-header">
+        <span class="section-badge badge-system">SYSTEM</span>
+        <h2 class="section-title">Exit & Transfer</h2>
+      </div>
+
+      <div class="accordion" id="accordionExit">
+        <button class="accordion-header" onclick="toggleAccordion('accordionExit')">
+          <span class="accordion-step">🚪</span>
+          <div class="accordion-info">
+            <div class="accordion-title">독립과 양도</div>
+            <div class="accordion-desc">이 시스템에서 나가고 싶을 때</div>
+          </div>
+          <span class="accordion-toggle">▼</span>
+        </button>
+        <div class="accordion-content">
+          <div class="exit-content">
+            <p>이 공간은 당신을 붙잡기 위해 존재하지 않습니다.</p>
+            <p>이 시스템은 당신을 <span class="highlight">'묶는'</span> 구조가 아니라<br>
+            당신이 떠나도 무너지지 않는 구조입니다.</p>
+            <p>언젠가 혼자 가고 싶어질 때,<br>
+            당신은 지금까지의 모든 기록과 시스템을<br>
+            <span class="highlight">'구매'</span>하여 독립할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <nav class="galaxy-express">
+      <div class="branch-stations">
+        <a href="../" class="branch-station">
+          <span class="branch-node">🏠</span>
+          <span class="branch-label">Home</span>
+        </a>
+        <button class="branch-station" id="logoutBtn">
+          <span class="branch-node">🚪</span>
+          <span class="branch-label">Exit</span>
+        </button>
+      </div>
+      <p class="express-label">Buckley Chang · Parksy World</p>
+    </nav>
   </div>
 </div>
 
@@ -564,7 +1001,6 @@
   var ACCESS_CODE = '1126';
   var STORAGE_KEY = 'buckley_staff_auth';
 
-  // Check if already authenticated
   if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
     document.getElementById('loginGate').classList.add('hidden');
     document.getElementById('portal').classList.add('active');
@@ -594,14 +1030,17 @@
     if (e.key === 'Enter') checkPassword();
   });
 
-  // Auto focus
   document.getElementById('passwordInput').focus();
 
-  // Accordion toggle
   function toggleAccordion(id) {
     var accordion = document.getElementById(id);
     accordion.classList.toggle('open');
   }
+
+  document.getElementById('logoutBtn').addEventListener('click', function() {
+    sessionStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
 </script>
 </body>
 </html>
