@@ -8,6 +8,12 @@
   "theme_color": "#0a0f14",
   "icons": [
     {
+      "src": "../BC.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
       "src": "icons/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
