@@ -955,7 +955,7 @@ function showToast(msg) {
 // 카드 클릭 시 링크 복사
 businessCard.addEventListener('click', function(e) {
   if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) return;
-  navigator.clipboard.writeText('https://buckleychang.com').then(function() {
+  navigator.clipboard.writeText('https://dtslib1979.github.io/buckleychang.com/card/').then(function() {
     showToast('링크가 복사되었습니다');
   });
 });
