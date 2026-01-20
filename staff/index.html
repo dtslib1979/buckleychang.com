@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0f14">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Staff Portal | Buckley Chang</title>
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <style>
+    :root {
+      --bg: #0a0f14;
+      --bg-elevated: #0f161d;
+      --bg-card: #141c26;
+      --gold: #c9a227;
+      --gold-light: #e8c547;
+      --gold-dim: rgba(201,162,39,.15);
+      --green: #22c55e;
+      --yellow: #eab308;
+      --red: #ef4444;
+      --text: #f8fafc;
+      --text-secondary: rgba(248,250,252,.7);
+      --text-muted: rgba(248,250,252,.5);
+      --border: rgba(248,250,252,.1);
+      --border-gold: rgba(201,162,39,.4);
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ===== LOGIN GATE ===== */
+    .login-gate {
+      text-align: center;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-gate.hidden { display: none; }
+
+    .login-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      background: var(--bg-elevated);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      box-shadow: 0 4px 20px rgba(201,162,39,.2);
+    }
+
+    .login-title { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+    .login-subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 36px; }
+
+    .login-input {
+      width: 100%;
+      max-width: 280px;
+      padding: 16px 20px;
+      background: var(--bg-elevated);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 20px;
+      color: var(--text);
+      text-align: center;
+      letter-spacing: 8px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .login-input:focus { outline: none; border-color: var(--gold); }
+    .login-input::placeholder { letter-spacing: normal; font-size: 14px; color: var(--text-muted); }
+
+    .login-btn {
+      width: 100%;
+      max-width: 280px;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--gold), #C9A227);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--bg);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .login-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,162,39,.35); }
+    .login-error { color: #FF6B6B; font-size: 13px; margin-top: 16px; display: none; }
+    .login-error.show { display: block; }
+
+    /* ===== PORTAL ===== */
+    .portal { display: none; }
+    .portal.active { display: block; }
+
+    .portal-header {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 24px 0;
+      border-bottom: 2px solid var(--border-gold);
+      background: linear-gradient(180deg, rgba(201,162,39,.08) 0%, transparent 100%);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .portal-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 8px rgba(201,162,39,.3);
+    }
+
+    .portal-subtitle {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* ===== ACCORDION ===== */
+    .accordion { margin-bottom: 14px; }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 16px;
+      background: var(--bg-elevated);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      width: 100%;
+      text-align: left;
+    }
+
+    .accordion-header:hover { border-color: var(--gold); background: var(--bg-card); }
+    .accordion.open .accordion-header { border-color: var(--gold); border-radius: var(--radius-md) var(--radius-md) 0 0; background: var(--gold); }
+    .accordion.open .accordion-header .accordion-title,
+    .accordion.open .accordion-header .accordion-desc,
+    .accordion.open .accordion-header .accordion-toggle { color: var(--bg); }
+
+    .accordion-step {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold);
+      border-radius: var(--radius-full);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--bg);
+      flex-shrink: 0;
+    }
+
+    .accordion.open .accordion-step { background: var(--bg); color: var(--gold); }
+
+    .accordion-info { flex: 1; }
+    .accordion-title { font-size: 17px; font-weight: 700; margin-bottom: 2px; color: var(--gold); }
+    .accordion-desc { font-size: 13px; color: var(--text-secondary); }
+
+    .accordion-toggle {
+      font-size: 20px;
+      color: var(--text-muted);
+      transition: transform 0.3s;
+    }
+
+    .accordion.open .accordion-toggle { transform: rotate(180deg); }
+
+    .accordion-content {
+      display: none;
+      background: var(--bg-card);
+      border: 2px solid var(--gold);
+      border-top: none;
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+      padding: 14px;
+    }
+
+    .accordion.open .accordion-content { display: block; }
+
+    /* ===== SUB-CATEGORIES (koosy style) ===== */
+    .sub-category { margin-bottom: 16px; }
+    .sub-category:last-child { margin-bottom: 0; }
+
+    .sub-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sub-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sub-chip {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      transition: all 0.2s;
+    }
+
+    .sub-chip:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .zone-chip {
+      font-weight: 600;
+    }
+
+    .zone-chip.green { border-color: var(--green); color: var(--green); }
+    .zone-chip.yellow { border-color: var(--yellow); color: var(--yellow); }
+    .zone-chip.red { border-color: var(--red); color: var(--red); }
+
+    /* ===== TOOL CARDS (buddies.kr style) ===== */
+    .tool-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .tool-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .tool-card:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .tool-icon {
+      font-size: 28px;
+      width: 48px;
+      text-align: center;
+    }
+
+    .tool-info { flex: 1; }
+
+    .tool-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .tool-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .tool-arrow {
+      font-size: 18px;
+      color: var(--text-muted);
+    }
+
+    .tool-card:hover .tool-arrow {
+      color: var(--gold);
+    }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0 16px;
+    }
+
+    .section-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    /* ===== BACK LINK ===== */
+    .portal-footer {
+      text-align: center;
+      padding-top: 32px;
+      margin-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 14px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: var(--bg-elevated);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Login Gate -->
+  <div class="login-gate" id="loginGate">
+    <div class="login-logo">🔐</div>
+    <h1 class="login-title">Staff Portal</h1>
+    <p class="login-subtitle">Buckley Chang 내부 관리 도구</p>
+    <input type="tel" inputmode="numeric" pattern="[0-9]*" class="login-input" id="passwordInput" placeholder="암호 4자리" maxlength="4" autocomplete="off" autofocus />
+    <button class="login-btn" id="loginBtn">접속</button>
+    <p class="login-error" id="loginError">암호가 올바르지 않습니다</p>
+  </div>
+
+  <!-- Portal Content -->
+  <div class="portal" id="portal">
+    <header class="portal-header">
+      <h1 class="portal-title">Secret Office</h1>
+      <p class="portal-subtitle">Buckley Chang Operations Center</p>
+    </header>
+
+    <!-- 1인 콘텐츠 회사 (koosy style accordion) -->
+    <div class="accordion open" id="accordionCreator">
+      <button class="accordion-header" onclick="toggleAccordion('accordionCreator')">
+        <span class="accordion-step">📺</span>
+        <div class="accordion-info">
+          <div class="accordion-title">1인 콘텐츠 회사</div>
+          <div class="accordion-desc">AI 시대 크리에이터의 법인화·세무·수익화</div>
+        </div>
+        <span class="accordion-toggle">▼</span>
+      </button>
+      <div class="accordion-content">
+        <div class="sub-category">
+          <div class="sub-label">Zone Status</div>
+          <div class="sub-items">
+            <span class="sub-chip zone-chip green">🟢 GREEN</span>
+            <span class="sub-chip zone-chip yellow">🟡 YELLOW</span>
+            <span class="sub-chip zone-chip red">🔴 RED</span>
+          </div>
+        </div>
+
+        <div class="sub-category">
+          <div class="sub-label">Entity Services</div>
+          <div class="sub-items">
+            <span class="sub-chip">개인사업자 전환</span>
+            <span class="sub-chip">법인 설립</span>
+            <span class="sub-chip">지분 구조 설계</span>
+            <span class="sub-chip">IP 분리</span>
+          </div>
+        </div>
+
+        <div class="sub-category">
+          <div class="sub-label">Tax Services</div>
+          <div class="sub-items">
+            <span class="sub-chip">종합소득세</span>
+            <span class="sub-chip">부가가치세</span>
+            <span class="sub-chip">국제 조세</span>
+            <span class="sub-chip">원천징수</span>
+          </div>
+        </div>
+
+        <div class="sub-category">
+          <div class="sub-label">Revenue Streams</div>
+          <div class="sub-items">
+            <span class="sub-chip">YouTube AdSense</span>
+            <span class="sub-chip">Sponsorship</span>
+            <span class="sub-chip">Digital Products</span>
+            <span class="sub-chip">IP Licensing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client Operations (buddies.kr style accordion) -->
+    <div class="accordion" id="accordionOperations">
+      <button class="accordion-header" onclick="toggleAccordion('accordionOperations')">
+        <span class="accordion-step">⚙️</span>
+        <div class="accordion-info">
+          <div class="accordion-title">Client Operations</div>
+          <div class="accordion-desc">클라이언트 관리 및 내부 운영 도구</div>
+        </div>
+        <span class="accordion-toggle">▼</span>
+      </button>
+      <div class="accordion-content">
+        <div class="section-divider">
+          <span class="section-badge">Zone Management</span>
+          <span class="section-line"></span>
+        </div>
+        <div class="tool-grid">
+          <a href="#" class="tool-card">
+            <span class="tool-icon">📋</span>
+            <div class="tool-info">
+              <p class="tool-name">Zone Checker</p>
+              <p class="tool-desc">클라이언트 Zone 상태 확인</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+          <a href="#" class="tool-card">
+            <span class="tool-icon">📊</span>
+            <div class="tool-info">
+              <p class="tool-name">Trigger Monitor</p>
+              <p class="tool-desc">Yellow Zone 트리거 모니터링</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+        </div>
+
+        <div class="section-divider">
+          <span class="section-badge">Approval System</span>
+          <span class="section-line"></span>
+        </div>
+        <div class="tool-grid">
+          <a href="#" class="tool-card">
+            <span class="tool-icon">📝</span>
+            <div class="tool-info">
+              <p class="tool-name">Approval Queue</p>
+              <p class="tool-desc">승인/반려/보류 대기열</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+          <a href="#" class="tool-card">
+            <span class="tool-icon">🔖</span>
+            <div class="tool-info">
+              <p class="tool-name">Digital Seal</p>
+              <p class="tool-desc">승인 인장 발급 이력</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+        </div>
+
+        <div class="section-divider">
+          <span class="section-badge">Network</span>
+          <span class="section-line"></span>
+        </div>
+        <div class="tool-grid">
+          <a href="#" class="tool-card">
+            <span class="tool-icon">🤝</span>
+            <div class="tool-info">
+              <p class="tool-name">Partner Network</p>
+              <p class="tool-desc">특허/법무/세무 파트너 연결</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Documents (protocol guides) -->
+    <div class="accordion" id="accordionDocs">
+      <button class="accordion-header" onclick="toggleAccordion('accordionDocs')">
+        <span class="accordion-step">📚</span>
+        <div class="accordion-info">
+          <div class="accordion-title">Documents</div>
+          <div class="accordion-desc">프로토콜 및 가이드 문서</div>
+        </div>
+        <span class="accordion-toggle">▼</span>
+      </button>
+      <div class="accordion-content">
+        <div class="tool-grid">
+          <a href="#" class="tool-card">
+            <span class="tool-icon">🚦</span>
+            <div class="tool-info">
+              <p class="tool-name">Traffic Signal Protocol</p>
+              <p class="tool-desc">Zone 시스템 정의서</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+          <a href="#" class="tool-card">
+            <span class="tool-icon">⚡</span>
+            <div class="tool-info">
+              <p class="tool-name">Trigger Thresholds</p>
+              <p class="tool-desc">Yellow Zone 진입 조건</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+          <a href="#" class="tool-card">
+            <span class="tool-icon">📦</span>
+            <div class="tool-info">
+              <p class="tool-name">Black Box Operation</p>
+              <p class="tool-desc">승인 시스템 운영 가이드</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+          <a href="#" class="tool-card">
+            <span class="tool-icon">✅</span>
+            <div class="tool-info">
+              <p class="tool-name">Transition Checklist</p>
+              <p class="tool-desc">개인→법인 전환 체크리스트</p>
+            </div>
+            <span class="tool-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="portal-footer">
+      <a href="../" class="back-btn">← Return to Main</a>
+    </footer>
+  </div>
+</div>
+
+<script>
+  var ACCESS_CODE = '1126';
+  var STORAGE_KEY = 'buckley_staff_auth';
+
+  // Check if already authenticated
+  if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
+    document.getElementById('loginGate').classList.add('hidden');
+    document.getElementById('portal').classList.add('active');
+  }
+
+  function checkPassword() {
+    var input = document.getElementById('passwordInput');
+    var value = input.value.trim();
+
+    if (value === ACCESS_CODE) {
+      sessionStorage.setItem(STORAGE_KEY, 'true');
+      document.getElementById('loginGate').classList.add('hidden');
+      document.getElementById('portal').classList.add('active');
+    } else {
+      input.classList.add('error');
+      document.getElementById('loginError').classList.add('show');
+      input.value = '';
+      setTimeout(function() {
+        input.classList.remove('error');
+        document.getElementById('loginError').classList.remove('show');
+      }, 2000);
+    }
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', checkPassword);
+  document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  // Auto focus
+  document.getElementById('passwordInput').focus();
+
+  // Accordion toggle
+  function toggleAccordion(id) {
+    var accordion = document.getElementById(id);
+    accordion.classList.toggle('open');
+  }
+</script>
+</body>
+</html>

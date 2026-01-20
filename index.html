@@ -39,9 +39,9 @@
       --bg: #0a0f14;
       --bg-elevated: #0f161d;
       --bg-card: #141c26;
-      --bg-glass: rgba(15,22,29,.95);
       --gold: #c9a227;
       --gold-light: #e8c547;
+      --gold-pale: #f4e4a6;
       --gold-dim: rgba(201,162,39,.08);
       --gold-glow: rgba(201,162,39,.15);
       --green: #22c55e;
@@ -50,7 +50,7 @@
       --text: #f8fafc;
       --text-secondary: rgba(248,250,252,.7);
       --text-muted: rgba(248,250,252,.45);
-      --text-dim: rgba(248,250,252,.2);
+      --text-dim: rgba(248,250,252,.25);
       --border: rgba(248,250,252,.08);
       --border-gold: rgba(201,162,39,.25);
       --space-xs: 4px;
@@ -60,11 +60,14 @@
       --space-xl: 40px;
       --space-2xl: 64px;
       --radius-sm: 8px;
-      --radius-md: 12px;
+      --radius-md: 14px;
       --radius-lg: 20px;
+      --radius-xl: 28px;
       --radius-full: 9999px;
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,.6);
+      --shadow-gold: 0 8px 50px rgba(201,162,39,.15);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,7 +79,7 @@
       font-size: 14px;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.7;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
@@ -87,10 +90,16 @@
       top: -50%; left: -50%;
       width: 200%; height: 200%;
       background:
-        radial-gradient(ellipse 60% 40% at 20% 20%, rgba(201,162,39,.03) 0%, transparent 50%),
-        radial-gradient(ellipse 50% 60% at 80% 80%, rgba(59,130,246,.02) 0%, transparent 50%);
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201,162,39,.04) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 80% at 85% 90%, rgba(34,197,94,.03) 0%, transparent 50%);
       pointer-events: none;
       z-index: -1;
+      animation: ambientMove 25s ease-in-out infinite;
+    }
+
+    @keyframes ambientMove {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-2%, 3%) scale(0.98); }
     }
 
     body::after {
@@ -98,12 +107,13 @@
       position: fixed;
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.015;
+      opacity: 0.018;
       pointer-events: none;
       z-index: 9999;
     }
 
     a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
 
     .container {
       width: 100%;
@@ -112,10 +122,44 @@
       padding: calc(var(--safe-top) + var(--space-xl)) var(--space-lg) calc(var(--safe-bottom) + var(--space-2xl));
     }
 
-    /* ===== HERO ===== */
+    /* ===== HERO HEADER ===== */
     header {
       text-align: center;
-      padding: var(--space-2xl) 0;
+      padding: var(--space-2xl) 0 var(--space-xl);
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(180deg, transparent, var(--gold), transparent);
+      opacity: 0.3;
+    }
+
+    .slogan {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slogan::before,
+    .slogan::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,162,39,.5), transparent);
     }
 
     .logo-circle {
@@ -128,7 +172,13 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      box-shadow: 0 0 60px rgba(201,162,39,.15);
+      box-shadow: 0 8px 32px rgba(201,162,39,.2), 0 0 60px rgba(201,162,39,.1);
+      transition: all 0.5s ease;
+    }
+
+    .logo-circle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 48px rgba(201,162,39,.3), 0 0 80px rgba(201,162,39,.2);
     }
 
     .logo-circle::before {
@@ -159,6 +209,7 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
+      opacity: 0.8;
     }
 
     .traffic-dots .green { background: var(--green); box-shadow: 0 0 10px var(--green); }
@@ -170,681 +221,680 @@
       100% { background-position: 200% center; }
     }
 
+    @keyframes titlePulse {
+      0%, 100% { filter: drop-shadow(0 0 30px rgba(201,162,39,.15)); }
+      50% { filter: drop-shadow(0 0 50px rgba(201,162,39,.3)); }
+    }
+
     .site-title {
       font-family: 'Cinzel', serif;
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 600;
-      letter-spacing: 0.15em;
-      background: linear-gradient(90deg, #8B7355, #D4AF37, #F4E4A6, #D4AF37, #8B7355);
+      letter-spacing: 0.2em;
+      background: linear-gradient(90deg, #5C4D35, #8B7355, #D4AF37, #F4E4A6, #D4AF37, #8B7355, #D4AF37, #F4E4A6);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: goldFlow 4s linear infinite;
+      animation: goldFlow 5s linear infinite, titlePulse 4s ease-in-out infinite;
       margin-bottom: var(--space-sm);
     }
 
-    .slogan {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      font-style: italic;
-      color: var(--text-secondary);
-      margin-bottom: var(--space-xs);
+    /* ===== BUSINESS CARD ===== */
+    @keyframes cardShimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
     }
 
-    .role-badge {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      text-transform: uppercase;
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0) rotateX(0); }
+      50% { transform: translateY(-4px) rotateX(1deg); }
     }
 
-    /* ===== POSITION CARD ===== */
-    .position-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: var(--radius-lg);
-      padding: var(--space-lg);
-      margin-bottom: var(--space-lg);
+    .business-card-wrapper {
+      margin: 0 0 var(--space-xl);
+      perspective: 1200px;
+    }
+
+    .business-card {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(201,162,39,.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.5) 0%, transparent 50%),
+        linear-gradient(170deg, #101418 0%, #0a0f14 40%, #050608 100%);
+      border: 1px solid rgba(201,162,39,.15);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl) var(--space-lg);
       position: relative;
       overflow: hidden;
+      box-shadow:
+        0 25px 80px rgba(0,0,0,.7),
+        0 0 100px rgba(201,162,39,.08),
+        inset 0 1px 0 rgba(255,255,255,.04);
+      cursor: pointer;
+      transition: all 0.5s ease;
+      animation: floatCard 6s ease-in-out infinite;
     }
 
-    .position-card::before {
+    .business-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--yellow), var(--red));
     }
 
-    .position-card h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: var(--space-md);
-    }
-
-    .position-card blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 18px;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.5;
-      margin-bottom: var(--space-md);
-      padding-left: var(--space-md);
-      border-left: 2px solid var(--gold);
-    }
-
-    .position-card p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.8;
-    }
-
-    .position-card ul {
-      list-style: none;
-      margin-top: var(--space-md);
-    }
-
-    .position-card li {
-      font-size: 13px;
-      color: var(--text-secondary);
-      padding: var(--space-xs) 0;
-      padding-left: var(--space-md);
-      position: relative;
-    }
-
-    .position-card li::before {
-      content: '·';
+    .business-card::after {
+      content: '';
       position: absolute;
-      left: 0;
-      color: var(--gold);
-      font-weight: bold;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 30%, rgba(201,162,39,.03) 0%, transparent 40%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s;
     }
 
-    /* ===== QUICK LINKS ===== */
-    .quick-links {
-      display: flex;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-xl);
+    .business-card:hover {
+      transform: translateY(-12px) rotateX(3deg) scale(1.01);
+      border-color: rgba(201,162,39,.4);
+      box-shadow:
+        0 40px 100px rgba(0,0,0,.8),
+        0 0 150px rgba(201,162,39,.15);
+      animation: none;
     }
 
-    .quick-link {
-      flex: 1;
+    .business-card:hover::after { opacity: 1; }
+
+    .card-logo {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto var(--space-lg);
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--bg-elevated);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--space-xs);
-      padding: var(--space-md);
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      font-size: 13px;
-      color: var(--text-secondary);
-      transition: all 0.2s;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 8px 32px rgba(201,162,39,.2);
+      transition: all 0.5s ease;
     }
 
-    .quick-link:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: var(--gold-dim);
+    .business-card:hover .card-logo {
+      transform: scale(1.08);
+      box-shadow: 0 12px 48px rgba(201,162,39,.3);
     }
 
-    /* ===== SECRET OFFICE GATE ===== */
-    .secret-gate {
-      background: var(--bg-elevated);
-      border: 1px dashed var(--border-gold);
-      border-radius: var(--radius-lg);
-      padding: var(--space-xl);
-      text-align: center;
-    }
-
-    .secret-gate.hidden { display: none; }
-
-    .secret-icon {
-      font-size: 36px;
-      margin-bottom: var(--space-md);
-    }
-
-    .secret-title {
+    .card-logo .monogram {
       font-family: 'Cinzel', serif;
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: var(--space-xs);
-      letter-spacing: 0.1em;
-    }
-
-    .secret-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: var(--space-lg);
-    }
-
-    .password-input {
-      width: 100%;
-      max-width: 200px;
-      padding: var(--space-md);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      color: var(--text);
-      font-size: 18px;
-      text-align: center;
-      letter-spacing: 8px;
-      margin-bottom: var(--space-md);
-    }
-
-    .password-input:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-
-    .password-input.error {
-      border-color: var(--red);
-      animation: shake 0.3s;
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
-    }
-
-    .password-btn {
-      padding: var(--space-md) var(--space-xl);
-      background: var(--gold);
-      border: none;
-      border-radius: var(--radius-md);
-      color: var(--bg);
-      font-size: 13px;
+      font-size: 32px;
       font-weight: 600;
-      cursor: pointer;
-      letter-spacing: 0.05em;
+      color: var(--gold);
     }
 
-    .password-btn:hover { opacity: 0.9; }
-
-    /* ===== SECRET OFFICE PORTAL ===== */
-    .secret-portal {
-      display: none;
-    }
-
-    .secret-portal.unlocked { display: block; }
-
-    .portal-header {
+    .card-brand {
       text-align: center;
-      padding: var(--space-lg) 0;
-      border-bottom: 1px solid var(--border);
       margin-bottom: var(--space-lg);
+      position: relative;
+      z-index: 1;
     }
 
-    .portal-icon { font-size: 32px; margin-bottom: var(--space-sm); }
-
-    .portal-title {
+    .card-brand-name {
       font-family: 'Cinzel', serif;
-      font-size: 20px;
-      font-weight: 500;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-    }
-
-    .portal-desc {
       font-size: 12px;
-      color: var(--text-muted);
-      margin-top: var(--space-xs);
-    }
-
-    /* ===== ACCORDION ===== */
-    .accordion {
-      margin-bottom: var(--space-md);
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-    }
-
-    .accordion-header {
-      display: flex;
-      align-items: center;
-      gap: var(--space-sm);
-      padding: var(--space-md);
-      cursor: pointer;
-      list-style: none;
-    }
-
-    .accordion-header::-webkit-details-marker { display: none; }
-
-    .accordion-icon {
-      font-size: 20px;
-      width: 32px;
-      text-align: center;
-    }
-
-    .accordion-title {
-      flex: 1;
-      font-size: 14px;
       font-weight: 600;
-      color: var(--text);
-    }
-
-    .accordion-badge {
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--bg);
-      background: var(--gold);
-      padding: 3px 8px;
-      border-radius: var(--radius-sm);
-      letter-spacing: 0.05em;
-    }
-
-    .accordion-toggle {
-      font-size: 12px;
-      color: var(--gold);
-      transition: transform 0.2s;
-    }
-
-    .accordion[open] .accordion-toggle {
-      transform: rotate(180deg);
-    }
-
-    .accordion-content {
-      padding: 0 var(--space-md) var(--space-md);
-    }
-
-    .accordion-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: var(--space-md);
-      padding-bottom: var(--space-md);
-      border-bottom: 1px solid var(--border);
-    }
-
-    /* Sub-categories */
-    .sub-category {
-      margin-bottom: var(--space-md);
-    }
-
-    .sub-category:last-child { margin-bottom: 0; }
-
-    .sub-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--gold);
+      background: linear-gradient(90deg, #6B5B3D, #D4AF37, #F4E4A6, #D4AF37, #6B5B3D);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: cardShimmer 6s linear infinite;
       margin-bottom: var(--space-sm);
     }
 
-    .sub-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+    .card-tagline {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      line-height: 1.8;
     }
 
-    .sub-chip {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-full);
-      padding: 5px 12px;
-      transition: all 0.2s;
+    .card-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,162,39,.25), rgba(201,162,39,.4), rgba(201,162,39,.25), transparent);
+      margin: var(--space-lg) 0;
+      position: relative;
+      z-index: 1;
     }
 
-    .sub-chip:hover {
+    .card-quote {
+      text-align: center;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-quote span {
       color: var(--gold);
-      border-color: var(--gold);
-      background: var(--gold-dim);
+      font-weight: 500;
+      text-shadow: 0 0 30px rgba(201,162,39,.3);
     }
 
-    /* Tool cards */
-    .tool-list {
+    .card-contact {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-contact-item {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .card-contact-item a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .card-contact-item a:hover { color: var(--gold); }
+
+    .card-contact-icon {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+    }
+
+    .card-contact-item a:hover .card-contact-icon { opacity: 1; }
+
+    .card-actions {
       display: grid;
-      gap: var(--space-sm);
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: var(--space-lg);
+      position: relative;
+      z-index: 1;
     }
 
-    .tool-card {
+    .card-btn {
       display: flex;
       align-items: center;
-      gap: var(--space-md);
-      padding: var(--space-md);
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: transparent;
+      border: 1px solid rgba(201,162,39,.35);
       border-radius: var(--radius-md);
-      transition: all 0.2s;
-    }
-
-    .tool-card:hover {
-      border-color: var(--gold);
-      background: var(--gold-dim);
-    }
-
-    .tool-icon {
-      font-size: 24px;
-      width: 40px;
-      text-align: center;
-    }
-
-    .tool-info { flex: 1; }
-
-    .tool-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-
-    .tool-desc {
+      color: var(--gold);
       font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .card-btn:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .card-btn.primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #0A0A0A;
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    .card-btn.primary:hover {
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-2px);
+    }
+
+    .card-footer-note {
+      text-align: center;
+      margin-top: var(--space-md);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .business-card-wrapper:hover .card-footer-note {
+      opacity: 1;
       color: var(--text-muted);
     }
 
-    .tool-arrow {
-      font-size: 16px;
-      color: var(--text-dim);
+    /* ===== SERVICES SHOWCASE ===== */
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: var(--space-lg);
+      padding-left: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    .services-showcase {
+      margin-bottom: var(--space-xl);
+      background: linear-gradient(165deg, var(--bg-elevated) 0%, var(--bg) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl) var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .services-showcase::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 0 0 4px 4px;
+      opacity: 0.6;
+    }
+
+    .showcase-header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .showcase-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-md);
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      color: var(--gold);
+    }
+
+    .showcase-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 24px;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+    }
+
+    .showcase-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: stretch;
+      gap: 16px;
+      padding: 16px 18px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      transform: scaleY(0);
+      transform-origin: center;
+      transition: transform 0.3s ease;
+    }
+
+    .service-item:hover {
+      background: var(--gold-dim);
+      border-color: var(--border-gold);
+      transform: translateX(4px);
+    }
+
+    .service-item:hover::before { transform: scaleY(1); }
+
+    .service-spine {
+      width: 6px;
+      background: linear-gradient(180deg, var(--gold), #B8962E);
+      border-radius: 3px;
+      flex-shrink: 0;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .service-item:hover .service-spine { opacity: 1; }
+
+    .service-content { flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+    .service-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; margin-bottom: 4px; transition: color 0.2s; }
+    .service-item:hover .service-title { color: var(--gold-light); }
+    .service-meta { font-size: 12px; color: var(--text-muted); letter-spacing: 0.03em; }
+
+    /* ===== SECRET OFFICE ENTRY ===== */
+    @keyframes goldPulse {
+      0%, 100% { border-color: rgba(201,162,39,.2); box-shadow: 0 0 20px rgba(201,162,39,.1); }
+      50% { border-color: rgba(201,162,39,.5); box-shadow: 0 0 30px rgba(201,162,39,.2), 0 0 60px rgba(201,162,39,.1); }
+    }
+
+    .secret-entry-bottom {
+      display: flex;
+      justify-content: center;
+      padding: var(--space-xl) 0;
+    }
+
+    .secret-door-mini {
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(165deg, rgba(20,20,20,.9), rgba(10,10,10,.95));
+      border: 1px solid rgba(201,162,39,.25);
+      border-radius: var(--radius-lg);
+      color: var(--gold);
+      transition: all 0.5s ease;
+      animation: goldPulse 3s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .secret-door-mini::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(201,162,39,.1), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .secret-door-mini:hover {
+      border-color: var(--gold);
+      transform: scale(1.05);
+      animation: none;
+      box-shadow: var(--shadow-gold);
+    }
+
+    .secret-door-mini:hover::before { opacity: 1; }
+
+    .fingerprint-icon {
+      width: 36px;
+      height: 36px;
+      transition: transform 0.3s ease;
+    }
+
+    .secret-door-mini:hover .fingerprint-icon {
+      transform: scale(1.1);
     }
 
     /* ===== FOOTER ===== */
     footer {
       text-align: center;
-      padding-top: var(--space-xl);
+      padding: var(--space-xl) 0 var(--space-lg);
       border-top: 1px solid var(--border);
-      margin-top: var(--space-xl);
     }
 
-    .footer-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 14px;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      margin-bottom: var(--space-xs);
-    }
-
-    .footer-meta {
-      font-size: 10px;
+    .footer-text {
+      font-size: 11px;
       color: var(--text-dim);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      background: linear-gradient(135deg, var(--bg-elevated), var(--bg-card));
+      border: 1px solid var(--border-gold);
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gold);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      pointer-events: none;
+      box-shadow: var(--shadow-lg), 0 0 40px rgba(201,162,39,.15);
+    }
+
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .container { max-width: 600px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Hero -->
-    <header>
-      <div class="logo-circle">
-        <span class="logo-monogram">BC</span>
-      </div>
-      <div class="traffic-dots">
-        <span class="green"></span>
-        <span class="yellow"></span>
-        <span class="red"></span>
-      </div>
-      <h1 class="site-title">BUCKLEY CHANG</h1>
-      <p class="slogan">Reality Interface for the AI Economy</p>
-      <p class="role-badge">CPA · Parksy World</p>
-    </header>
 
-    <!-- Position Summary -->
-    <section class="position-card">
-      <h2>POSITION</h2>
-      <blockquote>
-        Buckley는 회계사가 아니다.<br>
-        Buckley는 "사람이 기업이 되는 순간"을 담당한다.
-      </blockquote>
-      <p>이미 존재하는 규칙(법, 세금, 국가 시스템)을 AI 시대의 창작물 위에 정확히 씌운다.</p>
-      <ul>
-        <li>콘텐츠가 <strong>자산</strong>이 되려 할 때</li>
-        <li>개인이 <strong>기업</strong>이 되려 할 때</li>
-        <li>수익이 <strong>국경을 넘는 흐름</strong>이 될 때</li>
-      </ul>
-    </section>
-
-    <!-- Quick Links -->
-    <div class="quick-links">
-      <a href="./card/" class="quick-link">
-        <span>💳</span> Contact
-      </a>
-      <a href="#secret" class="quick-link" id="secretBtn">
-        <span>🔐</span> Secret Office
-      </a>
+<div class="container">
+  <header>
+    <div class="slogan">Reality Interface for the AI Economy</div>
+    <div class="logo-circle">
+      <span class="logo-monogram">BC</span>
     </div>
+    <div class="traffic-dots">
+      <span class="green"></span>
+      <span class="yellow"></span>
+      <span class="red"></span>
+    </div>
+    <h1 class="site-title">BUCKLEY CHANG</h1>
+  </header>
 
-    <!-- Secret Office Gate -->
-    <section class="secret-gate" id="secretGate">
-      <div class="secret-icon">🔐</div>
-      <h2 class="secret-title">SECRET OFFICE</h2>
-      <p class="secret-desc">Staff Only · 접근 코드 입력</p>
-      <input type="password" class="password-input" id="passwordInput" maxlength="4" placeholder="****" inputmode="numeric">
-      <br>
-      <button class="password-btn" id="passwordBtn">ENTER</button>
-    </section>
-
-    <!-- Secret Office Portal (Hidden by default) -->
-    <section class="secret-portal" id="secretPortal">
-      <div class="portal-header">
-        <div class="portal-icon">🏛️</div>
-        <h2 class="portal-title">SECRET OFFICE</h2>
-        <p class="portal-desc">Buckley Chang Operations Center</p>
+  <!-- 명함 카드 (koosy style) -->
+  <div class="business-card-wrapper">
+    <article class="business-card" id="businessCard">
+      <div class="card-logo">
+        <span class="monogram">BC</span>
       </div>
 
-      <!-- Accordion 1: 1인 콘텐츠 회사 -->
-      <details class="accordion" open>
-        <summary class="accordion-header">
-          <span class="accordion-icon">📺</span>
-          <span class="accordion-title">1인 콘텐츠 회사</span>
-          <span class="accordion-badge">CREATOR</span>
-          <span class="accordion-toggle">▼</span>
-        </summary>
-        <div class="accordion-content">
-          <p class="accordion-desc">AI 시대 1인 크리에이터의 법인화·세무·수익화 지원</p>
+      <div class="card-brand">
+        <h1 class="card-brand-name">BUCKLEY CHANG</h1>
+        <p class="card-tagline">CPA · Reality Interface<br>Parksy World</p>
+      </div>
 
-          <div class="sub-category">
-            <div class="sub-label">Zone Status</div>
-            <div class="sub-items">
-              <span class="sub-chip" style="border-color: var(--green); color: var(--green);">🟢 GREEN</span>
-              <span class="sub-chip" style="border-color: var(--yellow); color: var(--yellow);">🟡 YELLOW</span>
-              <span class="sub-chip" style="border-color: var(--red); color: var(--red);">🔴 RED</span>
-            </div>
-          </div>
+      <div class="card-divider"></div>
 
-          <div class="sub-category">
-            <div class="sub-label">Entity Services</div>
-            <div class="sub-items">
-              <span class="sub-chip">개인사업자 전환</span>
-              <span class="sub-chip">법인 설립</span>
-              <span class="sub-chip">지분 구조 설계</span>
-              <span class="sub-chip">IP 분리</span>
-            </div>
-          </div>
+      <p class="card-quote">"<span>개인이 기업이 되는 순간</span>을 담당합니다"</p>
 
-          <div class="sub-category">
-            <div class="sub-label">Tax Services</div>
-            <div class="sub-items">
-              <span class="sub-chip">종합소득세</span>
-              <span class="sub-chip">부가가치세</span>
-              <span class="sub-chip">국제 조세</span>
-              <span class="sub-chip">원천징수</span>
-            </div>
-          </div>
+      <div class="card-divider"></div>
 
-          <div class="sub-category">
-            <div class="sub-label">Revenue Streams</div>
-            <div class="sub-items">
-              <span class="sub-chip">YouTube AdSense</span>
-              <span class="sub-chip">Sponsorship</span>
-              <span class="sub-chip">Digital Products</span>
-              <span class="sub-chip">IP Licensing</span>
-            </div>
-          </div>
-        </div>
-      </details>
+      <div class="card-contact">
+        <p class="card-contact-item">
+          <a href="https://buckleychang.com" target="_blank">
+            <svg class="card-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            buckleychang.com
+          </a>
+        </p>
+        <p class="card-contact-item">
+          <a href="mailto:buckley@parksy.world">
+            <svg class="card-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            buckley@parksy.world
+          </a>
+        </p>
+      </div>
 
-      <!-- Accordion 2: Client Operations -->
-      <details class="accordion">
-        <summary class="accordion-header">
-          <span class="accordion-icon">⚙️</span>
-          <span class="accordion-title">Client Operations</span>
-          <span class="accordion-badge">STAFF</span>
-          <span class="accordion-toggle">▼</span>
-        </summary>
-        <div class="accordion-content">
-          <p class="accordion-desc">클라이언트 관리 및 내부 운영 도구</p>
+      <div class="card-actions">
+        <button class="card-btn" id="saveContactBtn" onclick="saveContact()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          Save Contact
+        </button>
+        <a href="mailto:buckley@parksy.world?subject=Contact%20Buckley%20Chang" class="card-btn primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Contact
+        </a>
+      </div>
+    </article>
 
-          <div class="tool-list">
-            <a href="#" class="tool-card">
-              <span class="tool-icon">📋</span>
-              <div class="tool-info">
-                <div class="tool-name">Zone Checker</div>
-                <div class="tool-desc">클라이언트 Zone 상태 확인</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-
-            <a href="#" class="tool-card">
-              <span class="tool-icon">📊</span>
-              <div class="tool-info">
-                <div class="tool-name">Trigger Monitor</div>
-                <div class="tool-desc">Yellow Zone 트리거 모니터링</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-
-            <a href="#" class="tool-card">
-              <span class="tool-icon">📝</span>
-              <div class="tool-info">
-                <div class="tool-name">Approval Queue</div>
-                <div class="tool-desc">승인/반려/보류 대기열</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-
-            <a href="#" class="tool-card">
-              <span class="tool-icon">🤝</span>
-              <div class="tool-info">
-                <div class="tool-name">Partner Network</div>
-                <div class="tool-desc">특허/법무/세무 파트너 연결</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-
-            <a href="#" class="tool-card">
-              <span class="tool-icon">🔖</span>
-              <div class="tool-info">
-                <div class="tool-name">Digital Seal</div>
-                <div class="tool-desc">승인 인장 발급 이력</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-          </div>
-        </div>
-      </details>
-
-      <!-- Accordion 3: Documents -->
-      <details class="accordion">
-        <summary class="accordion-header">
-          <span class="accordion-icon">📚</span>
-          <span class="accordion-title">Documents</span>
-          <span class="accordion-badge">DOCS</span>
-          <span class="accordion-toggle">▼</span>
-        </summary>
-        <div class="accordion-content">
-          <p class="accordion-desc">프로토콜 및 가이드 문서</p>
-
-          <div class="tool-list">
-            <a href="#" class="tool-card">
-              <span class="tool-icon">🚦</span>
-              <div class="tool-info">
-                <div class="tool-name">Traffic Signal Protocol</div>
-                <div class="tool-desc">Zone 시스템 정의서</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-
-            <a href="#" class="tool-card">
-              <span class="tool-icon">⚡</span>
-              <div class="tool-info">
-                <div class="tool-name">Trigger Thresholds</div>
-                <div class="tool-desc">Yellow Zone 진입 조건</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-
-            <a href="#" class="tool-card">
-              <span class="tool-icon">📦</span>
-              <div class="tool-info">
-                <div class="tool-name">Black Box Operation</div>
-                <div class="tool-desc">승인 시스템 운영 가이드</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-
-            <a href="#" class="tool-card">
-              <span class="tool-icon">✅</span>
-              <div class="tool-info">
-                <div class="tool-name">Transition Checklist</div>
-                <div class="tool-desc">개인→법인 전환 체크리스트</div>
-              </div>
-              <span class="tool-arrow">→</span>
-            </a>
-          </div>
-        </div>
-      </details>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <p class="footer-logo">BUCKLEY CHANG</p>
-      <p class="footer-meta">PARKSY WORLD · EST. 2026</p>
-    </footer>
+    <p class="card-footer-note">Tap card to copy link</p>
   </div>
 
-  <script>
-    (function() {
-      var SECRET_CODE = '1126';
-      var gate = document.getElementById('secretGate');
-      var portal = document.getElementById('secretPortal');
-      var input = document.getElementById('passwordInput');
-      var btn = document.getElementById('passwordBtn');
-      var secretBtn = document.getElementById('secretBtn');
+  <!-- Services Showcase -->
+  <section class="services-showcase">
+    <div class="showcase-header">
+      <div class="showcase-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/>
+        </svg>
+      </div>
+      <h2 class="showcase-title">Services</h2>
+      <p class="showcase-subtitle">What Buckley Handles</p>
+    </div>
 
-      // Check if already unlocked
-      if (sessionStorage.getItem('buckley_unlocked') === 'true') {
-        gate.classList.add('hidden');
-        portal.classList.add('unlocked');
-      }
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-spine"></div>
+        <div class="service-content">
+          <div class="service-title">콘텐츠가 자산이 되려 할 때</div>
+          <div class="service-meta">IP 분리 · 자산 평가 · 라이선싱</div>
+        </div>
+      </div>
 
-      function tryUnlock() {
-        if (input.value === SECRET_CODE) {
-          sessionStorage.setItem('buckley_unlocked', 'true');
-          gate.classList.add('hidden');
-          portal.classList.add('unlocked');
-          portal.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          input.classList.add('error');
-          input.value = '';
-          setTimeout(function() {
-            input.classList.remove('error');
-          }, 300);
-        }
-      }
+      <div class="service-item">
+        <div class="service-spine"></div>
+        <div class="service-content">
+          <div class="service-title">개인이 기업이 되려 할 때</div>
+          <div class="service-meta">사업자 전환 · 법인 설립 · 지분 구조</div>
+        </div>
+      </div>
 
-      btn.addEventListener('click', tryUnlock);
-      input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') tryUnlock();
-      });
+      <div class="service-item">
+        <div class="service-spine"></div>
+        <div class="service-content">
+          <div class="service-title">수익이 국경을 넘는 흐름이 될 때</div>
+          <div class="service-meta">국제 조세 · 원천징수 · 해외 법인</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      secretBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        gate.scrollIntoView({ behavior: 'smooth' });
-        input.focus();
-      });
-    })();
-  </script>
+  <!-- Secret Office Entry -->
+  <div class="secret-entry-bottom">
+    <a href="./staff/" class="secret-door-mini">
+      <svg class="fingerprint-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <path d="M12 2a6 6 0 0 0-6 6v4c0 4 2 8 6 8"/>
+        <path d="M18 8a6 6 0 0 0-6-6"/>
+        <path d="M18 8v4c0 2.5-1 5-2 6.5"/>
+        <path d="M6 12c0 2 .5 4 2 6"/>
+        <path d="M12 5a3 3 0 0 0-3 3v3"/>
+        <path d="M15 8a3 3 0 0 0-3-3"/>
+        <path d="M15 8v4c0 2-1 4-2 5"/>
+        <path d="M9 11v3c0 2 1 4 2 5"/>
+        <path d="M12 7v9"/>
+      </svg>
+    </a>
+  </div>
+
+  <footer>
+    <p class="footer-text">© 2026 BUCKLEY CHANG · PARKSY WORLD</p>
+  </footer>
+</div>
+
+<div class="toast" id="toast">링크가 복사되었습니다</div>
+
+<script>
+// 명함 기능
+var businessCard = document.getElementById('businessCard');
+var toast = document.getElementById('toast');
+
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(function() { toast.classList.remove('show'); }, 2000);
+}
+
+// 카드 클릭 시 링크 복사
+businessCard.addEventListener('click', function(e) {
+  if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) return;
+  navigator.clipboard.writeText('https://buckleychang.com').then(function() {
+    showToast('링크가 복사되었습니다');
+  });
+});
+
+// 연락처 저장
+function saveContact() {
+  var vcard = 'BEGIN:VCARD\n' +
+    'VERSION:3.0\n' +
+    'FN:Buckley Chang\n' +
+    'ORG:Parksy World\n' +
+    'TITLE:CPA · Reality Interface\n' +
+    'EMAIL:buckley@parksy.world\n' +
+    'URL:https://buckleychang.com\n' +
+    'NOTE:Reality Interface for the AI Economy\n' +
+    'END:VCARD';
+
+  var blob = new Blob([vcard], { type: 'text/vcard' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'Buckley_Chang.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('연락처가 저장되었습니다');
+}
+</script>
 </body>
 </html>
