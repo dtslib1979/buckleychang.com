@@ -162,48 +162,37 @@
       background: linear-gradient(90deg, transparent, rgba(201,162,39,.5), transparent);
     }
 
-    .logo-circle {
-      width: 120px;
-      height: 120px;
+    .logo-video {
+      width: 100%;
+      max-width: 280px;
       margin: 0 auto var(--space-lg);
       border: 2px solid var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
       position: relative;
       box-shadow: 0 8px 32px rgba(201,162,39,.2), 0 0 60px rgba(201,162,39,.1);
       transition: all 0.5s ease;
     }
 
-    .logo-circle:hover {
-      transform: scale(1.05);
+    .logo-video:hover {
+      transform: scale(1.02);
       box-shadow: 0 12px 48px rgba(201,162,39,.3), 0 0 80px rgba(201,162,39,.2);
     }
 
-    .logo-circle::before {
+    .logo-video::before {
       content: '';
       position: absolute;
-      inset: -8px;
+      inset: -6px;
       border: 1px solid var(--border-gold);
-      border-radius: 50%;
+      border-radius: calc(var(--radius-lg) + 4px);
       opacity: 0.4;
+      pointer-events: none;
     }
 
-    .logo-monogram {
-      font-family: 'Cinzel', serif;
-      font-size: 42px;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: -2px;
-    }
-
-    .logo-circle img,
-    .logo-circle video {
+    .logo-video video {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
+      height: auto;
+      display: block;
     }
 
     .traffic-dots {
@@ -809,7 +798,7 @@
 <div class="container">
   <header>
     <div class="slogan">Reality Interface for the AI Economy</div>
-    <div class="logo-circle">
+    <div class="logo-video">
       <video src="./1768908733709.mp4" autoplay loop muted playsinline></video>
     </div>
     <div class="traffic-dots">
