@@ -1,10 +1,33 @@
-# BUCKLEY CHANG 에이전트 프로토콜
+# BUCKLEY CHANG 에이전트 프로토콜 v3.0
 
 > 이 문서는 Claude Code가 buckleychang.com 레포지토리에서 작업할 때 따라야 하는 헌법입니다.
 
 ---
 
-## 1. 역할 정의
+## 1. Branch Identity (2-Axis System)
+
+| 축 | 값 | 설명 |
+|----|-----|------|
+| **Governance** | `collaborator` | HQ와 강하게 연동 (독립 후보) |
+| **Cognitive** | `builder` | 시스템 중심. AI는 동료. 출력=도구/OS/파이프라인 |
+
+### HQ Access 권한
+```
+✅ templates    - 페이지/컴포넌트 템플릿
+✅ sync         - HQ 동기화 시스템
+✅ claude-code  - Claude Code 에이전트 접근
+✅ sdk          - dtslib-bridge SDK
+❌ broadcast    - (Builder 특화 - 방송 불필요)
+```
+
+### 캐릭터 프로필
+- **본성**: 자동화 중독자, 사무 OS 파트너
+- **강점**: 유튜브 X, 시스템 구축에 올인
+- **전략**: 독립(Independent) 후보. 자체 OS 구축 중.
+
+---
+
+## 2. 역할 정의
 
 Buckley Chang은 **Parksy World의 Reality Interface**입니다.
 
@@ -17,26 +40,36 @@ Buckley Chang은 **Parksy World의 Reality Interface**입니다.
 - Partner Network 라우팅
 
 ### 하지 않는 것:
-- 창작 (콘텐츠, 디자인, 코드)
+- 창작 (콘텐츠, 디자인)
 - 크리에이터 육성
 - 콘텐츠 방향 개입
 - 투자 조언
 
 ---
 
-## 2. HQ 연동
+## 3. HQ 연동
 
 | 항목 | 값 |
 |------|-----|
 | **본사 레포** | dtslib1979/dtslib-branch |
-| **브랜치 ID** | buckleychang |
+| **브랜치 ID** | buckley |
 | **상태** | active |
 | **공개** | public |
 | **커스텀 도메인** | buckleychang.com |
+| **레지스트리** | `hq/registry/branches.json` |
+
+### 독립 경로
+```
+현재: Collaborator (HQ 연동)
+   ↓
+목표: Independent (자체 OS 보유)
+   - 자체 프로토콜 완성 시
+   - 클라이언트 시스템 안정화 시
+```
 
 ---
 
-## 3. 폴더 구조
+## 4. 폴더 구조
 
 ```
 buckleychang.com/
@@ -65,19 +98,19 @@ buckleychang.com/
 │   └── legal/              # 법무 서비스
 │
 ├── docs/                   # 문서/가이드
-│   ├── transition.md       # 전환 가이드
-│   └── checklist.md        # 체크리스트
-│
 ├── partners/               # 파트너 네트워크 페이지
 ├── card/                   # 명함 페이지
+│
+├── tools/                  # Builder 도구
+│   ├── automation/         # 자동화 스크립트
+│   └── zone-checker/       # Zone 판단 도구
+│
 └── staff/                  # 내부 도구
-    └── tools/
-        └── zone-checker.html
 ```
 
 ---
 
-## 4. Traffic Signal Protocol
+## 5. Traffic Signal Protocol
 
 ### Zone 정의
 
@@ -99,48 +132,26 @@ buckleychang.com/
 
 ---
 
-## 5. Conflict Resolution
+## 6. Builder 타입 작업 가이드
 
-복수 Trigger 발생 시 우선순위:
+### 핵심 원칙
+> "시스템이 판단한다. 인간은 승인한다."
 
-| 순위 | 리스크 유형 |
-|------|-------------|
-| 1 | 세금 리스크 (Tax) |
-| 2 | 법적 리스크 (Legal) |
-| 3 | 운영 리스크 (Operational) |
+### AI 활용 방식 (AI = 동료)
+- Claude Code로 자동화 구축
+- Zone 판단 로직 구현
+- 클라이언트 데이터 처리 파이프라인
+- 리포트 자동 생성
 
-> **원칙: 세금 먼저, 법 다음, 운영은 마지막**
-
----
-
-## 6. Black Box Operation
-
-### 입력
-- AI가 준비: 장부, 초안, 요약 리포트
-
-### Buckley 화면
-- `[승인]`
-- `[반려 — 위험]`
-- `[보류 — 자료 부족]`
-
-### 출력
-승인 시 **Digital Seal** 발급:
-> *Verified by Buckley Chang, CPA*
+### 권장 작업
+- Traffic Signal 자동화
+- 클라이언트 상태 모니터링
+- Partner Network 라우팅 자동화
+- 문서 자동 생성
 
 ---
 
-## 7. Partner Network
-
-| 영역 | 파트너 유형 | Buckley 역할 |
-|------|-------------|--------------|
-| 특허/상표 | 특허법인 | 의뢰서 작성, 타이밍 판단 |
-| 소송/분쟁 | 법무법인 | 리스크 분류, 증거 정리 |
-| 해외 법인 | 현지 파트너 (SG, US) | 구조 설계, 브릿지 |
-| 세무 조사 | 세무법인 | 사전 대비, 자료 정리 |
-
----
-
-## 8. 커밋 컨벤션
+## 7. 커밋 컨벤션
 
 ```
 feat: 새 기능
@@ -149,19 +160,27 @@ docs: 문서 업데이트
 protocol: 프로토콜 변경
 client: 클라이언트 관련
 partner: 파트너 관련
+tool: 도구/자동화
+zone: Zone 로직 관련
+```
+
+커밋 메시지 끝:
+```
+Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 ```
 
 ---
 
-## 9. 작업 시 주의사항
+## 8. 작업 시 주의사항
 
 1. 클라이언트 데이터는 절대 공개 커밋 금지
 2. 세금/법률 조언은 면책 문구 필수
 3. Partner 정보는 승인 후에만 공개
 4. Zone 판단 로직 변경 시 반드시 기록
+5. **Builder 특권**: 자동화 적극 구축, 독립 준비
 
 ---
 
-*Document Version 1.0*
-*2026-01-20*
-*Parksy World*
+*Version: 3.0*
+*Last Updated: 2026-01-26*
+*Affiliation: DTSLIB HQ (Collaborator → Independent 후보)*
