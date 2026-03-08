@@ -282,3 +282,15 @@ Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 *Version: 3.0*
 *Last Updated: 2026-01-26*
 *Affiliation: DTSLIB HQ (Collaborator → Independent 후보)*
+---
+
+## Browser Runtime
+
+> Parksy OS 2+2 매트릭스 — 이 레포 전담 브라우저
+
+| 항목 | 값 |
+|------|-----|
+| **브라우저** | MS Edge |
+| **이유** | 글로벌 CPA AI 경제 — 영어 성우급 낭독 |
+| **URL** | https://github.com/dtslib1979/buckleychang.com |
+
