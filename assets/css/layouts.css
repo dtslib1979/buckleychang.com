@@ -1,0 +1,25 @@
+/* ===== CONTAINER ===== */
+.container {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: calc(var(--safe-top) + var(--space-xl)) var(--space-lg) calc(var(--safe-bottom) + var(--space-2xl));
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: var(--space-xl) 0 var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+.footer-text {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+  .container { max-width: 600px; }
+}
