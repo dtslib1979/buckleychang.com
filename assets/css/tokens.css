@@ -1,0 +1,56 @@
+:root {
+  /* Background */
+  --bg: #0a0f14;
+  --bg-elevated: #0f161d;
+  --bg-card: #141c26;
+
+  /* Gold */
+  --gold: #c9a227;
+  --gold-light: #e8c547;
+  --gold-pale: #f4e4a6;
+  --gold-dim: rgba(201,162,39,.08);
+  --gold-glow: rgba(201,162,39,.15);
+
+  /* Signal */
+  --green: #22c55e;
+  --yellow: #eab308;
+  --red: #ef4444;
+
+  /* Text */
+  --text: #f8fafc;
+  --text-secondary: rgba(248,250,252,.7);
+  --text-muted: rgba(248,250,252,.45);
+  --text-dim: rgba(248,250,252,.25);
+
+  /* Border */
+  --border: rgba(248,250,252,.08);
+  --border-gold: rgba(201,162,39,.25);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Safe area */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Shadow */
+  --shadow-lg: 0 20px 60px rgba(0,0,0,.6);
+  --shadow-gold: 0 8px 50px rgba(201,162,39,.15);
+
+  /* Typography */
+  --font-display: 'Cinzel', serif;
+  --font-accent: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', 'Noto Sans KR', -apple-system, sans-serif;
+}
