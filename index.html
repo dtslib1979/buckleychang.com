@@ -7,18 +7,15 @@
   <title>BUCKLEY CHANG | AI 시대 1인 크리에이터 어드바이저리</title>
   <meta name="description" content="Buckley Chang, CPA — AI 시대 1인 미디어 크리에이터의 전담 관제탑. Traffic Signal Protocol로 전환 시점을 진단하고 전문가를 연결합니다." />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Design System -->
   <link rel="stylesheet" href="./assets/css/tokens.css">
   <link rel="stylesheet" href="./assets/css/base.css">
   <link rel="stylesheet" href="./assets/css/components.css">
   <link rel="stylesheet" href="./assets/css/layouts.css">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Buckley Chang, CPA" />
   <meta property="og:title" content="BUCKLEY CHANG — AI 시대 크리에이터 어드바이저리" />
@@ -26,8 +23,6 @@
   <meta property="og:url" content="https://buckleychang.com/" />
   <meta property="og:image" content="https://buckleychang.com/BC.jpg" />
   <meta property="og:locale" content="ko_KR" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="BUCKLEY CHANG — AI 시대 크리에이터 어드바이저리" />
   <meta name="twitter:description" content="개인이 기업이 되는 순간을 담당합니다." />
@@ -38,682 +33,825 @@
   <link rel="manifest" href="./assets/manifest.json" />
 
   <style>
-    /* ── LANDING PAGE STYLES ───────────────────────────────── */
-
-    /* Wrap */
-    .lp-wrap {
-      width: 100%;
-      max-width: 540px;
-      margin: 0 auto;
-      padding: 0 var(--space-lg);
-    }
-
-    /* ── NAV ── */
-    .lp-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: env(safe-area-inset-top, 0px) 0 0;
-      background: rgba(10,15,20,.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.3s;
-    }
-
-    .lp-nav.scrolled { border-bottom-color: var(--border); }
-
-    .lp-nav-inner {
-      max-width: 540px;
-      margin: 0 auto;
-      padding: 16px var(--space-lg);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .lp-nav-mark {
-      font-family: var(--font-display);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-    }
-
-    .lp-nav-sep {
-      width: 1px;
-      height: 14px;
-      background: var(--border);
-    }
-
-    .lp-nav-name {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      flex: 1;
-    }
-
-    .lp-nav-cta {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--border-gold);
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      transition: all 0.2s;
-    }
-
-    .lp-nav-cta:hover {
-      background: var(--gold);
-      color: var(--bg);
-      border-color: var(--gold);
-    }
-
-    /* ── HERO ── */
-    .lp-hero {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 100px var(--space-lg) var(--space-2xl);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .lp-hero-wrap {
-      max-width: 540px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .lp-hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      margin-bottom: var(--space-xl);
-      opacity: 0;
-      animation: fadeUp 0.7s 0.1s ease forwards;
-    }
-
-    .lp-hero-eyebrow::before {
-      content: '';
-      width: 20px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.6;
-    }
-
-    .lp-hero-headline {
-      font-family: var(--font-accent);
-      font-size: clamp(46px, 11vw, 72px);
-      font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: var(--space-xl);
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s ease forwards;
-    }
-
-    .lp-hero-headline em {
-      font-style: italic;
-      color: var(--gold);
-      display: block;
-      font-size: 0.85em;
-    }
-
-    .lp-hero-sub {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: var(--space-xl);
-      max-width: 340px;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.3s ease forwards;
-    }
-
-    .lp-hero-signal {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: var(--space-xl);
-      opacity: 0;
-      animation: fadeUp 0.8s 0.4s ease forwards;
-    }
-
-    .lp-signal-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-    }
-    .lp-signal-dot.g { background: var(--green);  box-shadow: 0 0 8px var(--green); }
-    .lp-signal-dot.y { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
-    .lp-signal-dot.r { background: var(--red);    box-shadow: 0 0 8px var(--red); }
-
-    .lp-signal-label {
-      font-size: 9px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-left: 4px;
-    }
-
-    .lp-hero-actions {
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.5s ease forwards;
-    }
-
-    .lp-cta-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px 26px;
-      background: transparent;
-      border: 1px solid var(--gold);
-      border-radius: var(--radius-md);
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .lp-cta-primary:hover {
-      background: var(--gold);
-      color: var(--bg);
-      box-shadow: var(--shadow-gold);
-    }
-
-    .lp-cta-primary:hover .lp-cta-arrow { transform: translateX(4px); }
-    .lp-cta-arrow { display: inline-block; transition: transform 0.3s ease; }
-
-    .lp-cta-secondary {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: color 0.2s;
-      padding: 15px 0;
-    }
-    .lp-cta-secondary:hover { color: var(--text); }
-
-    /* hero avatar */
-    .lp-hero-avatar {
-      position: absolute;
-      top: calc(env(safe-area-inset-top, 0px) + 80px);
-      right: var(--space-lg);
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 1.5px solid var(--border-gold);
-      overflow: hidden;
-      opacity: 0.55;
-      transition: opacity 0.3s;
-    }
-
-    .lp-hero-avatar:hover { opacity: 0.9; }
-
-    .lp-hero-avatar video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* scroll hint */
-    .lp-scroll-hint {
-      position: absolute;
-      bottom: var(--space-xl);
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 18px;
-      color: var(--text-dim);
-      animation: scrollBounce 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollBounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
-      50% { transform: translateX(-50%) translateY(6px); opacity: 0.8; }
-    }
-
-    /* ── SECTION BASE ── */
-    .lp-section {
-      padding: var(--space-2xl) 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .lp-label {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: var(--space-xl);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .lp-label::before {
-      content: '';
-      width: 16px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.4;
-    }
-
-    /* ── NARRATIVE ── */
-    .lp-narrative {
-      font-family: var(--font-accent);
-      font-size: clamp(20px, 5vw, 26px);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.65;
-      color: var(--text-secondary);
-    }
-
-    .lp-narrative strong {
-      font-style: normal;
-      font-weight: 600;
-      color: var(--gold);
-    }
-
-    /* ── MOMENTS ── */
-    .lp-moments { display: flex; flex-direction: column; }
-
-    .lp-moment {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-md);
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-      transition: all 0.2s;
-    }
-
-    .lp-moment:last-child { border-bottom: none; }
-
-    .lp-moment-num {
-      font-family: var(--font-display);
-      font-size: 10px;
-      font-weight: 400;
-      color: var(--gold);
-      opacity: 0.45;
-      letter-spacing: 0.1em;
-      min-width: 24px;
-      padding-top: 3px;
-      transition: opacity 0.2s;
-    }
-
-    .lp-moment:hover .lp-moment-num { opacity: 1; }
-
-    .lp-moment-body { flex: 1; }
-
-    .lp-moment-title {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.4;
-      margin-bottom: 5px;
-      transition: color 0.2s;
-    }
-
-    .lp-moment:hover .lp-moment-title { color: var(--gold-light); }
-
-    .lp-moment-desc {
-      font-size: 11px;
-      color: var(--text-muted);
-      letter-spacing: 0.03em;
-      line-height: 1.5;
-    }
-
-    .lp-moment-zone {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-      padding-top: 3px;
-    }
-
-    .lp-zone-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-    }
-    .lp-zone-dot.green  { background: var(--green);  box-shadow: 0 0 6px var(--green); }
-    .lp-zone-dot.yellow { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
-    .lp-zone-dot.red    { background: var(--red);    box-shadow: 0 0 6px var(--red); }
-
-    .lp-zone-text {
-      font-size: 8px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      white-space: nowrap;
-    }
-
-    /* ── PROTOCOL ── */
-    .lp-protocol { display: flex; flex-direction: column; gap: 8px; }
-
-    .lp-protocol-item {
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      padding: 16px var(--space-lg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      transition: all 0.3s ease;
-    }
-
-    .lp-protocol-item:hover {
-      border-color: var(--border-gold);
-      background: var(--gold-dim);
-    }
-
-    .lp-protocol-indicator {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .lp-protocol-indicator.green  { background: var(--green);  box-shadow: 0 0 8px var(--green); }
-    .lp-protocol-indicator.yellow { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
-    .lp-protocol-indicator.red    { background: var(--red);    box-shadow: 0 0 8px var(--red); }
-
-    .lp-protocol-zone {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      min-width: 56px;
-      color: var(--text-muted);
-    }
-
-    .lp-protocol-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      flex: 1;
-      line-height: 1.4;
-    }
-
-    .lp-protocol-action {
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      white-space: nowrap;
-    }
-
-    /* ── ZONE CTA BLOCK ── */
-    .lp-zone-cta {
-      border-top: 1px solid var(--border-gold);
-      border-bottom: 1px solid var(--border-gold);
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,162,39,.05) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 90% 30%, rgba(234,179,8,.03) 0%, transparent 60%),
-        var(--bg-elevated);
-      padding: var(--space-2xl) 0;
-      text-align: center;
-    }
-
-    .lp-zone-cta-eyebrow {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: var(--space-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .lp-zone-cta-eyebrow::before,
-    .lp-zone-cta-eyebrow::after {
-      content: '';
-      width: 24px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.3;
-    }
-
-    .lp-zone-cta-heading {
-      font-family: var(--font-accent);
-      font-size: clamp(30px, 8vw, 44px);
-      font-weight: 600;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.2;
-      margin-bottom: var(--space-md);
-    }
-
-    .lp-zone-cta-heading span { color: var(--gold); }
-
-    .lp-zone-cta-sub {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: var(--space-xl);
-      line-height: 1.7;
-    }
-
-    .lp-cta-primary.full {
-      display: flex;
-      justify-content: center;
-      max-width: 320px;
-      margin: 0 auto;
-    }
-
-    /* ── PARTNERSHIP ── */
-    .lp-partnership {
-      display: flex;
-      align-items: center;
-      gap: var(--space-lg);
-    }
-
-    .lp-partner { flex: 1; }
-
-    .lp-partner-name {
-      font-family: var(--font-display);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      color: var(--text);
-      margin-bottom: 5px;
-    }
-
-    .lp-partner-role {
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 0.08em;
-      line-height: 1.5;
-    }
-
-    .lp-partner-divider {
-      font-family: var(--font-accent);
-      font-size: 28px;
-      color: var(--gold);
-      opacity: 0.3;
-      flex-shrink: 0;
-    }
-
-    /* ── CONTACT ── */
-    .lp-contact {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-lg);
-    }
-
-    .lp-contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .lp-contact-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-
-    .lp-contact-row a {
-      transition: color 0.2s;
-    }
-
-    .lp-contact-row a:hover { color: var(--gold); }
-
-    .lp-contact-icon {
-      width: 14px;
-      height: 14px;
-      color: var(--text-dim);
-      flex-shrink: 0;
-    }
-
-    .lp-contact-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .lp-contact-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 13px 16px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      transition: all 0.2s;
-      background: transparent;
-    }
-
-    .lp-contact-btn:hover {
-      border-color: var(--border-gold);
-      color: var(--gold);
-    }
-
-    .lp-contact-btn.primary {
-      background: linear-gradient(135deg, var(--gold), var(--gold-light));
-      color: #0a0a0a;
-      border-color: transparent;
-      font-weight: 700;
-    }
-
-    .lp-contact-btn.primary:hover {
-      box-shadow: var(--shadow-gold);
-      transform: translateY(-1px);
-    }
-
-    .lp-license-btn {
-      font-size: 9px;
-      color: var(--text-dim);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      font-family: inherit;
-      transition: color 0.2s;
-      align-self: flex-start;
-    }
-
-    .lp-license-btn:hover { color: var(--gold); }
-
-    /* ── FOOTER ── */
-    .lp-footer {
-      border-top: 1px solid var(--border);
-      padding: var(--space-xl) 0 calc(var(--space-xl) + env(safe-area-inset-bottom, 0px));
-    }
-
-    .lp-footer-inner {
-      max-width: 540px;
-      margin: 0 auto;
-      padding: 0 var(--space-lg);
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-    }
-
-    .lp-footer-signal {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .lp-footer-text {
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 0.08em;
-      flex: 1;
-    }
-
-    .lp-footer-staff {
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-dim);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      transition: all 0.3s;
-    }
-
-    .lp-footer-staff:hover {
-      border-color: var(--border-gold);
-      color: var(--gold);
-    }
-
-    /* ── SCROLL REVEAL ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* ══════════════════════════════════════════
+   LANDING — BUCKLEY CHANG ADVISORY PORTAL
+   Version 2.0 · Goldman-tier
+══════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── REVEAL ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.75s cubic-bezier(.16,1,.3,1),
+              transform 0.75s cubic-bezier(.16,1,.3,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── NAV ── */
+.lp-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding-top: env(safe-area-inset-top, 0px);
+  transition: background 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+.lp-nav.scrolled {
+  background: rgba(10,15,20,.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom-color: var(--border);
+}
+.lp-nav-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 18px var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lp-nav-mark {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+}
+.lp-nav-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.lp-nav-name {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  flex: 1;
+}
+.lp-nav-cta {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border-gold);
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  transition: all 0.25s;
+}
+.lp-nav-cta:hover {
+  background: var(--gold);
+  color: var(--bg);
+  border-color: var(--gold);
+}
+
+/* ── LAYOUT WRAPPER ── */
+.lp-wrap {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+/* ── SECTION ── */
+.lp-section {
+  padding: 72px 0;
+  border-top: 1px solid var(--border);
+}
+
+.lp-label {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.lp-label::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+/* ════════════════
+   HERO
+════════════════ */
+.lp-hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 96px var(--space-lg) 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow */
+.lp-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 30%, rgba(201,162,39,.05) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 80% 80%, rgba(34,197,94,.025) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Giant BC watermark */
+.lp-hero::after {
+  content: 'BC';
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(180px, 40vw, 320px);
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.022;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  user-select: none;
+}
+
+.lp-hero-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+.lp-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.15s ease forwards;
+}
+.lp-hero-eyebrow::before {
+  content: '';
+  width: 22px; height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+.lp-hero-headline {
+  font-family: var(--font-accent);
+  font-size: clamp(48px, 11.5vw, 80px);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.25s ease forwards;
+}
+.lp-hero-headline em {
+  display: block;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 0.82em;
+  margin-top: 6px;
+}
+
+.lp-hero-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 380px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.35s ease forwards;
+}
+
+.lp-hero-signal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.45s ease forwards;
+}
+.lp-signal-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+}
+.lp-signal-dot.g { background: var(--green);  box-shadow: 0 0 8px var(--green); }
+.lp-signal-dot.y { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
+.lp-signal-dot.r { background: var(--red);    box-shadow: 0 0 8px var(--red); }
+.lp-signal-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-left: 4px;
+}
+
+.lp-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.55s ease forwards;
+}
+
+.lp-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-md);
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  background: transparent;
+}
+.lp-cta-primary:hover {
+  background: var(--gold);
+  color: var(--bg);
+  box-shadow: 0 8px 40px rgba(201,162,39,.35);
+}
+.lp-cta-arrow { display: inline-block; transition: transform 0.3s; }
+.lp-cta-primary:hover .lp-cta-arrow { transform: translateX(5px); }
+
+.lp-cta-secondary {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  transition: color 0.2s;
+  padding: 16px 0;
+}
+.lp-cta-secondary:hover { color: var(--text-secondary); }
+
+/* avatar */
+.lp-hero-avatar {
+  position: absolute;
+  top: 0; right: var(--space-lg);
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  border: 1px solid var(--border-gold);
+  overflow: hidden;
+  opacity: 0.5;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.lp-hero-avatar:hover { opacity: 0.85; transform: scale(1.05); }
+.lp-hero-avatar video { width: 100%; height: 100%; object-fit: cover; }
+
+/* scroll indicator */
+.lp-scroll-hint {
+  position: absolute;
+  bottom: 32px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeUp 1s 1s ease forwards;
+}
+.lp-scroll-hint span {
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.lp-scroll-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  opacity: 0.4;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.3; }
+  50% { transform: scaleY(1.2); opacity: 0.7; }
+}
+
+/* ════════════════
+   MANIFESTO STRIP
+════════════════ */
+.lp-manifesto {
+  padding: 56px var(--space-lg);
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
+  background:
+    radial-gradient(ellipse 60% 100% at 50% 50%, rgba(201,162,39,.04) 0%, transparent 70%);
+  text-align: center;
+}
+.lp-manifesto-text {
+  font-family: var(--font-accent);
+  font-size: clamp(18px, 4.5vw, 26px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.lp-manifesto-text strong {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--gold);
+}
+.lp-manifesto-sig {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ════════════════
+   STATS STRIP
+════════════════ */
+.lp-stats {
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+}
+.lp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.lp-stat {
+  background: var(--bg-elevated);
+  padding: 28px 20px;
+  text-align: center;
+  transition: background 0.2s;
+}
+.lp-stat:hover { background: var(--bg-card); }
+.lp-stat-num {
+  font-family: var(--font-accent);
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.lp-stat-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+}
+
+/* ════════════════
+   5 MOMENTS
+════════════════ */
+.lp-moments { display: flex; flex-direction: column; }
+
+.lp-moment {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  align-items: start;
+  gap: 16px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  transition: padding-left 0.3s ease;
+  cursor: default;
+}
+.lp-moment:last-child { border-bottom: none; }
+.lp-moment:hover { padding-left: 6px; }
+
+.lp-moment-num {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--gold);
+  opacity: 0.4;
+  letter-spacing: 0.08em;
+  padding-top: 3px;
+  transition: opacity 0.2s;
+}
+.lp-moment:hover .lp-moment-num { opacity: 1; }
+
+.lp-moment-body { min-width: 0; }
+.lp-moment-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 6px;
+  transition: color 0.2s;
+}
+.lp-moment:hover .lp-moment-title { color: var(--gold-light); }
+.lp-moment-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}
+
+.lp-moment-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding-top: 3px;
+  flex-shrink: 0;
+}
+.lp-zone-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+}
+.lp-zone-dot.green  { background: var(--green);  box-shadow: 0 0 7px var(--green); }
+.lp-zone-dot.yellow { background: var(--yellow); box-shadow: 0 0 7px var(--yellow); }
+.lp-zone-dot.red    { background: var(--red);    box-shadow: 0 0 7px var(--red); }
+.lp-zone-text {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+/* ════════════════
+   ZONE CARDS
+════════════════ */
+.lp-zone-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lp-zone-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px var(--space-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  cursor: default;
+}
+.lp-zone-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transition: height 0.35s ease;
+}
+.lp-zone-card:hover::before { height: 3px; }
+
+.lp-zone-card.zone-green::before  { background: var(--green); }
+.lp-zone-card.zone-yellow::before { background: var(--yellow); }
+.lp-zone-card.zone-red::before    { background: var(--red); }
+
+.lp-zone-card.zone-green:hover  { border-color: rgba(34,197,94,.3);  background: rgba(34,197,94,.03); }
+.lp-zone-card.zone-yellow:hover { border-color: rgba(234,179,8,.3);  background: rgba(234,179,8,.03); }
+.lp-zone-card.zone-red:hover    { border-color: rgba(239,68,68,.3);  background: rgba(239,68,68,.03); }
+
+.lp-zone-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.lp-zone-card-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.zone-green  .lp-zone-card-dot { background: var(--green);  box-shadow: 0 0 10px var(--green); }
+.zone-yellow .lp-zone-card-dot { background: var(--yellow); box-shadow: 0 0 10px var(--yellow); }
+.zone-red    .lp-zone-card-dot { background: var(--red);    box-shadow: 0 0 10px var(--red); }
+
+.lp-zone-card-name {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  flex: 1;
+}
+.zone-green  .lp-zone-card-name { color: var(--green); }
+.zone-yellow .lp-zone-card-name { color: var(--yellow); }
+.zone-red    .lp-zone-card-name { color: var(--red); }
+
+.lp-zone-card-action {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.lp-zone-card-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  padding-left: 22px;
+}
+
+.lp-zone-card-triggers {
+  margin-top: 10px;
+  padding-left: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.lp-trigger-tag {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+}
+
+/* ════════════════
+   ZONE CTA
+════════════════ */
+.lp-zone-cta {
+  padding: 80px var(--space-lg);
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,162,39,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 90% 30%, rgba(234,179,8,.04) 0%, transparent 60%),
+    var(--bg-elevated);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.lp-zone-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.012;
+  pointer-events: none;
+}
+.lp-zone-cta-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.lp-zone-cta-eyebrow::before,
+.lp-zone-cta-eyebrow::after {
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--gold);
+  opacity: 0.35;
+}
+.lp-zone-cta-heading {
+  font-family: var(--font-accent);
+  font-size: clamp(32px, 8vw, 52px);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.lp-zone-cta-heading span { color: var(--gold); }
+.lp-zone-cta-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  line-height: 1.75;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.lp-cta-primary.full {
+  display: inline-flex;
+  max-width: 340px;
+  justify-content: center;
+}
+
+/* ════════════════
+   PARTNERSHIP
+════════════════ */
+.lp-partnership-grid {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+.lp-partner {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s;
+}
+.lp-partner:hover {
+  border-color: var(--border-gold);
+  background: var(--gold-dim);
+}
+.lp-partner-name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.lp-partner-role {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+}
+.lp-partner-tag {
+  display: inline-block;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border-gold);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-bottom: 10px;
+}
+.lp-partner-divider {
+  font-family: var(--font-accent);
+  font-size: 32px;
+  color: var(--gold);
+  opacity: 0.25;
+  text-align: center;
+  font-weight: 300;
+}
+
+/* ════════════════
+   CONTACT
+════════════════ */
+.lp-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+.lp-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lp-contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.lp-contact-row a { transition: color 0.2s; }
+.lp-contact-row a:hover { color: var(--gold); }
+.lp-contact-icon { width: 14px; height: 14px; color: var(--text-dim); flex-shrink: 0; }
+.lp-contact-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.lp-contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition: all 0.25s;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+.lp-contact-btn:hover {
+  border-color: var(--border-gold);
+  color: var(--gold);
+}
+.lp-contact-btn.primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #0a0a0a;
+  border-color: transparent;
+  font-weight: 700;
+}
+.lp-contact-btn.primary:hover {
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-1px);
+  color: #0a0a0a;
+}
+.lp-license-btn {
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  font-family: inherit;
+  transition: color 0.2s;
+  align-self: flex-start;
+}
+.lp-license-btn:hover { color: var(--gold); }
+
+/* ════════════════
+   FOOTER
+════════════════ */
+.lp-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 0 calc(28px + env(safe-area-inset-bottom, 0px));
+}
+.lp-footer-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.lp-footer-signal { display: flex; gap: 6px; align-items: center; }
+.lp-footer-text {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  flex: 1;
+}
+.lp-footer-card {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+.lp-footer-card:hover { border-color: var(--border-gold); color: var(--gold); }
+.lp-footer-staff {
+  width: 34px; height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s;
+}
+.lp-footer-staff:hover { border-color: var(--border-gold); color: var(--gold); }
+
+/* ── RESPONSIVE ── */
+@media (min-width: 480px) {
+  .lp-contact-grid { grid-template-columns: 1fr 1fr; }
+}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV ──────────────────────────────── -->
 <nav class="lp-nav" id="lpNav">
   <div class="lp-nav-inner">
     <span class="lp-nav-mark">BC</span>
     <span class="lp-nav-sep"></span>
-    <span class="lp-nav-name">Buckley Chang</span>
+    <span class="lp-nav-name">Buckley Chang · CPA Advisory</span>
     <a href="#contact" class="lp-nav-cta">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- ── HERO ─────────────────────────────── -->
 <section class="lp-hero">
   <div class="lp-hero-wrap">
+
     <div class="lp-hero-eyebrow">CPA · Advisory · Parksy World · 2026</div>
 
     <h1 class="lp-hero-headline">
@@ -722,7 +860,7 @@
     </h1>
 
     <p class="lp-hero-sub">
-      AI 시대 1인 미디어 크리에이터를 위한 전담 어드바이저리.<br>
+      AI 시대 1인 미디어 크리에이터를 위한<br>전담 비즈니스 어드바이저리.<br>
       진단하고, 판단하고, 전문가를 연결합니다.
     </p>
 
@@ -739,29 +877,50 @@
       </a>
       <a href="#contact" class="lp-cta-secondary">직접 연락하기</a>
     </div>
+
   </div>
 
-  <div class="lp-hero-avatar">
+  <a href="./card/" class="lp-hero-avatar" title="디지털 명함">
     <video src="./1768908733709.mp4" autoplay loop muted playsinline></video>
-  </div>
+  </a>
 
-  <div class="lp-scroll-hint">↓</div>
+  <div class="lp-scroll-hint">
+    <span>Scroll</span>
+    <div class="lp-scroll-line"></div>
+  </div>
 </section>
 
-<!-- NARRATIVE -->
-<section class="lp-section reveal">
+<!-- ── MANIFESTO ─────────────────────────── -->
+<div class="lp-manifesto reveal">
+  <p class="lp-manifesto-text">
+    직접 다 하는 게 아닙니다.<br>
+    이 세계를 <strong>가장 잘 알기 때문에</strong><br>
+    어디로 보내야 하는지 판단하는 것입니다.
+  </p>
+  <p class="lp-manifesto-sig">— Buckley Chang, CPA · Reality Interface</p>
+</div>
+
+<!-- ── STATS ─────────────────────────────── -->
+<section class="lp-stats reveal">
   <div class="lp-wrap">
-    <div class="lp-label">About</div>
-    <p class="lp-narrative">
-      저도 이 길을 걸었습니다.<br>
-      첫 해외 수익이 들어왔을 때<br>
-      아무도 알려주지 않았습니다.<br><br>
-      <strong>그래서 이 프로토콜을 만들었습니다.</strong>
-    </p>
+    <div class="lp-stats-grid">
+      <div class="lp-stat">
+        <div class="lp-stat-num">₩300만</div>
+        <div class="lp-stat-label">월 수익 초과 시<br>Yellow Zone 진입</div>
+      </div>
+      <div class="lp-stat">
+        <div class="lp-stat-num">62%</div>
+        <div class="lp-stat-label">크리에이터가<br>개인 계좌를 비즈니스에 혼용</div>
+      </div>
+      <div class="lp-stat">
+        <div class="lp-stat-num">15–25%</div>
+        <div class="lp-stat-label">Zone Check 도구<br>리드 전환율</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- 5 MOMENTS -->
+<!-- ── 5 MOMENTS ─────────────────────────── -->
 <section class="lp-section reveal">
   <div class="lp-wrap">
     <div class="lp-label">전환점 — When We Engage</div>
@@ -783,7 +942,7 @@
         <span class="lp-moment-num">02</span>
         <div class="lp-moment-body">
           <div class="lp-moment-title">내 콘텐츠가 무단 사용당했다</div>
-          <div class="lp-moment-desc">AI 생성물 저작권 · 상표 · 테이크다운 · 2026년 법적 기준</div>
+          <div class="lp-moment-desc">AI 생성물 저작권 · 상표 · 2026년 대법원 판결 기준</div>
         </div>
         <div class="lp-moment-zone">
           <span class="lp-zone-dot red"></span>
@@ -831,41 +990,58 @@
   </div>
 </section>
 
-<!-- PROTOCOL -->
+<!-- ── ZONE CARDS ─────────────────────────── -->
 <section class="lp-section reveal">
   <div class="lp-wrap">
     <div class="lp-label">The Traffic Signal Protocol</div>
-    <div class="lp-protocol">
+    <div class="lp-zone-cards">
 
-      <div class="lp-protocol-item">
-        <span class="lp-protocol-indicator green"></span>
-        <span class="lp-protocol-zone">Green</span>
-        <span class="lp-protocol-desc">안전 영역. 지금은 만드는 데 집중하세요.</span>
-        <span class="lp-protocol-action">관여 없음</span>
+      <div class="lp-zone-card zone-green">
+        <div class="lp-zone-card-header">
+          <span class="lp-zone-card-dot"></span>
+          <span class="lp-zone-card-name">Green Zone</span>
+          <span class="lp-zone-card-action">관여 없음</span>
+        </div>
+        <p class="lp-zone-card-desc">개인 크리에이터, 초기 수익, 국내 플랫폼.<br>지금은 만드는 데 집중하세요. 가이드를 제공합니다.</p>
       </div>
 
-      <div class="lp-protocol-item">
-        <span class="lp-protocol-indicator yellow"></span>
-        <span class="lp-protocol-zone">Yellow</span>
-        <span class="lp-protocol-desc">전환 신호 감지. 진단하고 전문가를 연결합니다.</span>
-        <span class="lp-protocol-action">자동 호출</span>
+      <div class="lp-zone-card zone-yellow">
+        <div class="lp-zone-card-header">
+          <span class="lp-zone-card-dot"></span>
+          <span class="lp-zone-card-name">Yellow Zone</span>
+          <span class="lp-zone-card-action">자동 호출</span>
+        </div>
+        <p class="lp-zone-card-desc">전환 신호가 감지되었습니다. 진단하고 전문가를 연결합니다.</p>
+        <div class="lp-zone-card-triggers">
+          <span class="lp-trigger-tag">월 수익 ₩300만+</span>
+          <span class="lp-trigger-tag">첫 해외 결제</span>
+          <span class="lp-trigger-tag">직원 1명+</span>
+          <span class="lp-trigger-tag">IP 분리 언급</span>
+        </div>
       </div>
 
-      <div class="lp-protocol-item">
-        <span class="lp-protocol-indicator red"></span>
-        <span class="lp-protocol-zone">Red</span>
-        <span class="lp-protocol-desc">지금 전문 가이던스가 필요합니다.</span>
-        <span class="lp-protocol-action">전권 통제</span>
+      <div class="lp-zone-card zone-red">
+        <div class="lp-zone-card-header">
+          <span class="lp-zone-card-dot"></span>
+          <span class="lp-zone-card-name">Red Zone</span>
+          <span class="lp-zone-card-action">전권 통제</span>
+        </div>
+        <p class="lp-zone-card-desc">법인, 지분, IP 분리, 매각 검토 단계.<br>지금 전문 가이던스가 필요합니다.</p>
+        <div class="lp-zone-card-triggers">
+          <span class="lp-trigger-tag">법인 설립 문의</span>
+          <span class="lp-trigger-tag">IP 분리 결정</span>
+          <span class="lp-trigger-tag">매각 검토</span>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ZONE CHECK CTA -->
+<!-- ── ZONE CHECK CTA ─────────────────────── -->
 <section class="lp-zone-cta reveal">
   <div class="lp-wrap">
-    <div class="lp-zone-cta-eyebrow">자가진단 · Zone Check</div>
+    <div class="lp-zone-cta-eyebrow">Zone Check · 자가진단</div>
     <h2 class="lp-zone-cta-heading">
       지금 당신의<br><span>Zone</span>은 무엇인가요?
     </h2>
@@ -879,35 +1055,42 @@
   </div>
 </section>
 
-<!-- PARTNERSHIP -->
+<!-- ── PARTNERSHIP ───────────────────────── -->
 <section class="lp-section reveal">
   <div class="lp-wrap">
     <div class="lp-label">Advisory Partnership</div>
-    <div class="lp-partnership">
+    <div class="lp-partnership-grid">
+
       <div class="lp-partner">
+        <span class="lp-partner-tag">Compliance</span>
         <div class="lp-partner-name">BUCKLEY CHANG</div>
         <div class="lp-partner-role">
-          CPA · Compliance Advisory<br>
-          세무 · 법인 · 국제 조세
+          CPA · 세무 · 법인 설립<br>
+          국제 조세 · IP 판단
         </div>
       </div>
+
       <div class="lp-partner-divider">×</div>
+
       <div class="lp-partner">
+        <span class="lp-partner-tag">Growth</span>
         <div class="lp-partner-name">PARKSY</div>
         <div class="lp-partner-role">
-          Growth & Systems<br>
-          자동화 · 제작 파이프라인
+          시스템 · 자동화<br>
+          제작 파이프라인
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ── CONTACT ───────────────────────────── -->
 <section class="lp-section reveal" id="contact">
   <div class="lp-wrap">
     <div class="lp-label">Contact</div>
-    <div class="lp-contact">
+    <div class="lp-contact-grid">
+
       <div class="lp-contact-info">
         <div class="lp-contact-row">
           <svg class="lp-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -921,29 +1104,34 @@
           </svg>
           <a href="mailto:buckley@parksy.world">buckley@parksy.world</a>
         </div>
+        <button class="lp-license-btn" onclick="toggleLicense()">사업자등록증 보기</button>
       </div>
 
-      <div class="lp-contact-actions">
-        <button class="lp-contact-btn" onclick="saveContact()">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-          Save Contact
-        </button>
-        <a href="mailto:buckley@parksy.world?subject=Advisory%20문의" class="lp-contact-btn primary">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-          </svg>
-          문의하기
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="lp-contact-actions">
+          <button class="lp-contact-btn" onclick="saveContact()">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            </svg>
+            Save Contact
+          </button>
+          <a href="mailto:buckley@parksy.world?subject=Advisory%20문의" class="lp-contact-btn primary">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+            문의하기
+          </a>
+        </div>
+        <a href="./zone-check/" class="lp-contact-btn" style="justify-content:center;border-color:var(--border-gold);color:var(--gold);">
+          Zone Check 시작하기 →
         </a>
       </div>
 
-      <button class="lp-license-btn" onclick="toggleLicense()">사업자등록증 보기</button>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ── FOOTER ────────────────────────────── -->
 <footer class="lp-footer">
   <div class="lp-footer-inner">
     <div class="lp-footer-signal">
@@ -952,7 +1140,7 @@
       <span class="lp-signal-dot r"></span>
     </div>
     <p class="lp-footer-text">© 2026 BUCKLEY CHANG · PARKSY WORLD</p>
-    <a href="./card/" title="Digital Card" style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);padding:8px 0;transition:color .2s">Card</a>
+    <a href="./card/" class="lp-footer-card">Card</a>
     <a href="./staff/" class="lp-footer-staff" title="Staff Portal">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
         <path d="M12 2a6 6 0 0 0-6 6v4c0 4 2 8 6 8"/>
@@ -977,34 +1165,32 @@
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-// NAV scroll effect
+// Nav scroll
 var nav = document.getElementById('lpNav');
 window.addEventListener('scroll', function() {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
+  nav.classList.toggle('scrolled', window.scrollY > 30);
 }, { passive: true });
 
 // Scroll reveal
-var revealEls = document.querySelectorAll('.reveal');
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
-revealEls.forEach(function(el) { observer.observe(el); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
 
 // Toast
 var toast = document.getElementById('toast');
 function showToast(msg) {
   toast.textContent = msg;
   toast.classList.add('show');
-  setTimeout(function() { toast.classList.remove('show'); }, 2000);
+  setTimeout(function() { toast.classList.remove('show'); }, 2200);
 }
 
 // License modal
@@ -1017,14 +1203,14 @@ function closeLicenseModal(e) {
 
 // Save contact
 function saveContact() {
-  var vcard = 'BEGIN:VCARD\nVERSION:3.0\nFN:Buckley Chang\nORG:Parksy World\nTITLE:CPA · Reality Interface\nEMAIL:buckley@parksy.world\nURL:https://buckleychang.com\nNOTE:AI 시대 1인 크리에이터 어드바이저리\nEND:VCARD';
-  var blob = new Blob([vcard], { type: 'text/vcard' });
-  var url = URL.createObjectURL(blob);
+  var v = 'BEGIN:VCARD\nVERSION:3.0\nFN:Buckley Chang\nORG:Parksy World\nTITLE:CPA · Advisory\nEMAIL:buckley@parksy.world\nURL:https://buckleychang.com\nNOTE:AI 시대 1인 크리에이터 어드바이저리\nEND:VCARD';
+  var b = new Blob([v], { type: 'text/vcard' });
+  var u = URL.createObjectURL(b);
   var a = document.createElement('a');
-  a.href = url; a.download = 'Buckley_Chang.vcf';
+  a.href = u; a.download = 'Buckley_Chang.vcf';
   document.body.appendChild(a); a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  URL.revokeObjectURL(u);
   showToast('연락처가 저장되었습니다');
 }
 </script>
