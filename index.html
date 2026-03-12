@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#0a0f14" />
-  <title>BUCKLEY CHANG | Reality Interface for the AI Economy</title>
-  <meta name="description" content="Buckley Chang, CPA - 개인이 기업이 되는 순간을 담당합니다. Parksy World의 Reality Interface." />
+  <title>BUCKLEY CHANG | AI 시대 1인 크리에이터 어드바이저리</title>
+  <meta name="description" content="Buckley Chang, CPA — AI 시대 1인 미디어 크리에이터의 전담 관제탑. Traffic Signal Protocol로 전환 시점을 진단하고 전문가를 연결합니다." />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Cinzel:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Cinzel:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 
   <!-- Design System -->
   <link rel="stylesheet" href="./assets/css/tokens.css">
@@ -18,157 +18,943 @@
   <link rel="stylesheet" href="./assets/css/components.css">
   <link rel="stylesheet" href="./assets/css/layouts.css">
 
-  <!-- Open Graph / 카카오톡 미리보기 -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Buckley Chang, CPA" />
-  <meta property="og:title" content="BUCKLEY CHANG" />
-  <meta property="og:description" content="Reality Interface for the AI Economy | 개인이 기업이 되는 순간을 담당합니다." />
-  <meta property="og:url" content="https://dtslib1979.github.io/buckleychang.com/" />
-  <meta property="og:image" content="https://dtslib1979.github.io/buckleychang.com/BC.jpg" />
-  <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:width" content="1824" />
-  <meta property="og:image:height" content="2336" />
+  <meta property="og:title" content="BUCKLEY CHANG — AI 시대 크리에이터 어드바이저리" />
+  <meta property="og:description" content="개인이 기업이 되는 순간을 담당합니다. Traffic Signal Protocol." />
+  <meta property="og:url" content="https://buckleychang.com/" />
+  <meta property="og:image" content="https://buckleychang.com/BC.jpg" />
   <meta property="og:locale" content="ko_KR" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="BUCKLEY CHANG" />
-  <meta name="twitter:description" content="Reality Interface for the AI Economy | 개인이 기업이 되는 순간을 담당합니다." />
-  <meta name="twitter:image" content="https://dtslib1979.github.io/buckleychang.com/BC.jpg" />
+  <meta name="twitter:title" content="BUCKLEY CHANG — AI 시대 크리에이터 어드바이저리" />
+  <meta name="twitter:description" content="개인이 기업이 되는 순간을 담당합니다." />
+  <meta name="twitter:image" content="https://buckleychang.com/BC.jpg" />
 
   <link rel="canonical" href="https://buckleychang.com/" />
   <link rel="icon" href="./assets/icons/favicon.svg" />
   <link rel="manifest" href="./assets/manifest.json" />
 
+  <style>
+    /* ── LANDING PAGE STYLES ───────────────────────────────── */
+
+    /* Wrap */
+    .lp-wrap {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    /* ── NAV ── */
+    .lp-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: env(safe-area-inset-top, 0px) 0 0;
+      background: rgba(10,15,20,.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .lp-nav.scrolled { border-bottom-color: var(--border); }
+
+    .lp-nav-inner {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 16px var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lp-nav-mark {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .lp-nav-sep {
+      width: 1px;
+      height: 14px;
+      background: var(--border);
+    }
+
+    .lp-nav-name {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      flex: 1;
+    }
+
+    .lp-nav-cta {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--border-gold);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      transition: all 0.2s;
+    }
+
+    .lp-nav-cta:hover {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+
+    /* ── HERO ── */
+    .lp-hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px var(--space-lg) var(--space-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lp-hero-wrap {
+      max-width: 540px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .lp-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: var(--space-xl);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s ease forwards;
+    }
+
+    .lp-hero-eyebrow::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    .lp-hero-headline {
+      font-family: var(--font-accent);
+      font-size: clamp(46px, 11vw, 72px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: var(--space-xl);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .lp-hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+      display: block;
+      font-size: 0.85em;
+    }
+
+    .lp-hero-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: var(--space-xl);
+      max-width: 340px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s ease forwards;
+    }
+
+    .lp-hero-signal {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: var(--space-xl);
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s ease forwards;
+    }
+
+    .lp-signal-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+    .lp-signal-dot.g { background: var(--green);  box-shadow: 0 0 8px var(--green); }
+    .lp-signal-dot.y { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
+    .lp-signal-dot.r { background: var(--red);    box-shadow: 0 0 8px var(--red); }
+
+    .lp-signal-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-left: 4px;
+    }
+
+    .lp-hero-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s ease forwards;
+    }
+
+    .lp-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 26px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-md);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .lp-cta-primary:hover {
+      background: var(--gold);
+      color: var(--bg);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .lp-cta-primary:hover .lp-cta-arrow { transform: translateX(4px); }
+    .lp-cta-arrow { display: inline-block; transition: transform 0.3s ease; }
+
+    .lp-cta-secondary {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.2s;
+      padding: 15px 0;
+    }
+    .lp-cta-secondary:hover { color: var(--text); }
+
+    /* hero avatar */
+    .lp-hero-avatar {
+      position: absolute;
+      top: calc(env(safe-area-inset-top, 0px) + 80px);
+      right: var(--space-lg);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border-gold);
+      overflow: hidden;
+      opacity: 0.55;
+      transition: opacity 0.3s;
+    }
+
+    .lp-hero-avatar:hover { opacity: 0.9; }
+
+    .lp-hero-avatar video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* scroll hint */
+    .lp-scroll-hint {
+      position: absolute;
+      bottom: var(--space-xl);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 18px;
+      color: var(--text-dim);
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
+      50% { transform: translateX(-50%) translateY(6px); opacity: 0.8; }
+    }
+
+    /* ── SECTION BASE ── */
+    .lp-section {
+      padding: var(--space-2xl) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .lp-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: var(--space-xl);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .lp-label::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+    }
+
+    /* ── NARRATIVE ── */
+    .lp-narrative {
+      font-family: var(--font-accent);
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .lp-narrative strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    /* ── MOMENTS ── */
+    .lp-moments { display: flex; flex-direction: column; }
+
+    .lp-moment {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .lp-moment:last-child { border-bottom: none; }
+
+    .lp-moment-num {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--gold);
+      opacity: 0.45;
+      letter-spacing: 0.1em;
+      min-width: 24px;
+      padding-top: 3px;
+      transition: opacity 0.2s;
+    }
+
+    .lp-moment:hover .lp-moment-num { opacity: 1; }
+
+    .lp-moment-body { flex: 1; }
+
+    .lp-moment-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 5px;
+      transition: color 0.2s;
+    }
+
+    .lp-moment:hover .lp-moment-title { color: var(--gold-light); }
+
+    .lp-moment-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+    }
+
+    .lp-moment-zone {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      padding-top: 3px;
+    }
+
+    .lp-zone-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .lp-zone-dot.green  { background: var(--green);  box-shadow: 0 0 6px var(--green); }
+    .lp-zone-dot.yellow { background: var(--yellow); box-shadow: 0 0 6px var(--yellow); }
+    .lp-zone-dot.red    { background: var(--red);    box-shadow: 0 0 6px var(--red); }
+
+    .lp-zone-text {
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* ── PROTOCOL ── */
+    .lp-protocol { display: flex; flex-direction: column; gap: 8px; }
+
+    .lp-protocol-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: 16px var(--space-lg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+    }
+
+    .lp-protocol-item:hover {
+      border-color: var(--border-gold);
+      background: var(--gold-dim);
+    }
+
+    .lp-protocol-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .lp-protocol-indicator.green  { background: var(--green);  box-shadow: 0 0 8px var(--green); }
+    .lp-protocol-indicator.yellow { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
+    .lp-protocol-indicator.red    { background: var(--red);    box-shadow: 0 0 8px var(--red); }
+
+    .lp-protocol-zone {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      min-width: 56px;
+      color: var(--text-muted);
+    }
+
+    .lp-protocol-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    .lp-protocol-action {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* ── ZONE CTA BLOCK ── */
+    .lp-zone-cta {
+      border-top: 1px solid var(--border-gold);
+      border-bottom: 1px solid var(--border-gold);
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,162,39,.05) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 90% 30%, rgba(234,179,8,.03) 0%, transparent 60%),
+        var(--bg-elevated);
+      padding: var(--space-2xl) 0;
+      text-align: center;
+    }
+
+    .lp-zone-cta-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .lp-zone-cta-eyebrow::before,
+    .lp-zone-cta-eyebrow::after {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.3;
+    }
+
+    .lp-zone-cta-heading {
+      font-family: var(--font-accent);
+      font-size: clamp(30px, 8vw, 44px);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .lp-zone-cta-heading span { color: var(--gold); }
+
+    .lp-zone-cta-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: var(--space-xl);
+      line-height: 1.7;
+    }
+
+    .lp-cta-primary.full {
+      display: flex;
+      justify-content: center;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* ── PARTNERSHIP ── */
+    .lp-partnership {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .lp-partner { flex: 1; }
+
+    .lp-partner-name {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .lp-partner-role {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+    }
+
+    .lp-partner-divider {
+      font-family: var(--font-accent);
+      font-size: 28px;
+      color: var(--gold);
+      opacity: 0.3;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ── */
+    .lp-contact {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .lp-contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .lp-contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .lp-contact-row a {
+      transition: color 0.2s;
+    }
+
+    .lp-contact-row a:hover { color: var(--gold); }
+
+    .lp-contact-icon {
+      width: 14px;
+      height: 14px;
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    .lp-contact-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .lp-contact-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: all 0.2s;
+      background: transparent;
+    }
+
+    .lp-contact-btn:hover {
+      border-color: var(--border-gold);
+      color: var(--gold);
+    }
+
+    .lp-contact-btn.primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #0a0a0a;
+      border-color: transparent;
+      font-weight: 700;
+    }
+
+    .lp-contact-btn.primary:hover {
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-1px);
+    }
+
+    .lp-license-btn {
+      font-size: 9px;
+      color: var(--text-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      transition: color 0.2s;
+      align-self: flex-start;
+    }
+
+    .lp-license-btn:hover { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    .lp-footer {
+      border-top: 1px solid var(--border);
+      padding: var(--space-xl) 0 calc(var(--space-xl) + env(safe-area-inset-bottom, 0px));
+    }
+
+    .lp-footer-inner {
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .lp-footer-signal {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .lp-footer-text {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      flex: 1;
+    }
+
+    .lp-footer-staff {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all 0.3s;
+    }
+
+    .lp-footer-staff:hover {
+      border-color: var(--border-gold);
+      color: var(--gold);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <div class="slogan">Reality Interface for the AI Economy</div>
-    <div class="logo-video">
-      <video src="./1768908733709.mp4" autoplay loop muted playsinline></video>
+<!-- NAV -->
+<nav class="lp-nav" id="lpNav">
+  <div class="lp-nav-inner">
+    <span class="lp-nav-mark">BC</span>
+    <span class="lp-nav-sep"></span>
+    <span class="lp-nav-name">Buckley Chang</span>
+    <a href="#contact" class="lp-nav-cta">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="lp-hero">
+  <div class="lp-hero-wrap">
+    <div class="lp-hero-eyebrow">CPA · Advisory · Parksy World · 2026</div>
+
+    <h1 class="lp-hero-headline">
+      개인이 기업이<br>되는 순간,<br>
+      <em>관제탑이 작동합니다.</em>
+    </h1>
+
+    <p class="lp-hero-sub">
+      AI 시대 1인 미디어 크리에이터를 위한 전담 어드바이저리.<br>
+      진단하고, 판단하고, 전문가를 연결합니다.
+    </p>
+
+    <div class="lp-hero-signal">
+      <span class="lp-signal-dot g"></span>
+      <span class="lp-signal-dot y"></span>
+      <span class="lp-signal-dot r"></span>
+      <span class="lp-signal-label">Traffic Signal Protocol</span>
     </div>
-    <div class="traffic-dots">
-      <span class="green"></span>
-      <span class="yellow"></span>
-      <span class="red"></span>
+
+    <div class="lp-hero-actions">
+      <a href="./zone-check/" class="lp-cta-primary">
+        내 Zone 진단하기 <span class="lp-cta-arrow">→</span>
+      </a>
+      <a href="#contact" class="lp-cta-secondary">직접 연락하기</a>
     </div>
-    <h1 class="site-title">BUCKLEY CHANG</h1>
-  </header>
+  </div>
 
-  <!-- 명함 카드 (koosy style) -->
-  <div class="business-card-wrapper">
-    <article class="business-card" id="businessCard">
-      <div class="card-logo">
-        <span class="monogram">BC</span>
+  <div class="lp-hero-avatar">
+    <video src="./1768908733709.mp4" autoplay loop muted playsinline></video>
+  </div>
+
+  <div class="lp-scroll-hint">↓</div>
+</section>
+
+<!-- NARRATIVE -->
+<section class="lp-section reveal">
+  <div class="lp-wrap">
+    <div class="lp-label">About</div>
+    <p class="lp-narrative">
+      저도 이 길을 걸었습니다.<br>
+      첫 해외 수익이 들어왔을 때<br>
+      아무도 알려주지 않았습니다.<br><br>
+      <strong>그래서 이 프로토콜을 만들었습니다.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- 5 MOMENTS -->
+<section class="lp-section reveal">
+  <div class="lp-wrap">
+    <div class="lp-label">전환점 — When We Engage</div>
+    <div class="lp-moments">
+
+      <div class="lp-moment">
+        <span class="lp-moment-num">01</span>
+        <div class="lp-moment-body">
+          <div class="lp-moment-title">첫 해외 수익이 들어왔다</div>
+          <div class="lp-moment-desc">원천징수 · 환율 · 이중과세 조약 · 신고 방법</div>
+        </div>
+        <div class="lp-moment-zone">
+          <span class="lp-zone-dot yellow"></span>
+          <span class="lp-zone-text">Yellow</span>
+        </div>
       </div>
 
-      <div class="card-brand">
-        <h1 class="card-brand-name">BUCKLEY CHANG</h1>
-        <p class="card-tagline">CPA · Reality Interface<br>Parksy World</p>
+      <div class="lp-moment">
+        <span class="lp-moment-num">02</span>
+        <div class="lp-moment-body">
+          <div class="lp-moment-title">내 콘텐츠가 무단 사용당했다</div>
+          <div class="lp-moment-desc">AI 생성물 저작권 · 상표 · 테이크다운 · 2026년 법적 기준</div>
+        </div>
+        <div class="lp-moment-zone">
+          <span class="lp-zone-dot red"></span>
+          <span class="lp-zone-text">Red</span>
+        </div>
       </div>
 
-      <div class="card-divider"></div>
-
-      <p class="card-quote">"<span>개인이 기업이 되는 순간</span>을 담당합니다"</p>
-
-      <div class="card-divider"></div>
-
-      <div class="card-contact">
-        <p class="card-contact-item">
-          <a href="https://buckleychang.com" target="_blank">
-            <svg class="card-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-            buckleychang.com
-          </a>
-        </p>
-        <p class="card-contact-item">
-          <a href="mailto:buckley@parksy.world">
-            <svg class="card-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-            buckley@parksy.world
-          </a>
-        </p>
+      <div class="lp-moment">
+        <span class="lp-moment-num">03</span>
+        <div class="lp-moment-body">
+          <div class="lp-moment-title">월 수익이 300만원을 넘었다</div>
+          <div class="lp-moment-desc">사업자 전환 · 업종코드 940306 · 간이 vs 일반과세 판단</div>
+        </div>
+        <div class="lp-moment-zone">
+          <span class="lp-zone-dot yellow"></span>
+          <span class="lp-zone-text">Yellow</span>
+        </div>
       </div>
 
-      <div class="card-actions">
-        <button class="card-btn" id="saveContactBtn" onclick="saveContact()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="lp-moment">
+        <span class="lp-moment-num">04</span>
+        <div class="lp-moment-body">
+          <div class="lp-moment-title">브랜드 딜이 들어왔다</div>
+          <div class="lp-moment-desc">계약서 검토 · 전속 조항 · 세금계산서 · 수익 인식 시점</div>
+        </div>
+        <div class="lp-moment-zone">
+          <span class="lp-zone-dot yellow"></span>
+          <span class="lp-zone-text">Yellow</span>
+        </div>
+      </div>
+
+      <div class="lp-moment">
+        <span class="lp-moment-num">05</span>
+        <div class="lp-moment-body">
+          <div class="lp-moment-title">법인을 만들고 싶다</div>
+          <div class="lp-moment-desc">지분 구조 · IP 이전 · 절세 설계 · 대표이사 급여</div>
+        </div>
+        <div class="lp-moment-zone">
+          <span class="lp-zone-dot red"></span>
+          <span class="lp-zone-text">Red</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROTOCOL -->
+<section class="lp-section reveal">
+  <div class="lp-wrap">
+    <div class="lp-label">The Traffic Signal Protocol</div>
+    <div class="lp-protocol">
+
+      <div class="lp-protocol-item">
+        <span class="lp-protocol-indicator green"></span>
+        <span class="lp-protocol-zone">Green</span>
+        <span class="lp-protocol-desc">안전 영역. 지금은 만드는 데 집중하세요.</span>
+        <span class="lp-protocol-action">관여 없음</span>
+      </div>
+
+      <div class="lp-protocol-item">
+        <span class="lp-protocol-indicator yellow"></span>
+        <span class="lp-protocol-zone">Yellow</span>
+        <span class="lp-protocol-desc">전환 신호 감지. 진단하고 전문가를 연결합니다.</span>
+        <span class="lp-protocol-action">자동 호출</span>
+      </div>
+
+      <div class="lp-protocol-item">
+        <span class="lp-protocol-indicator red"></span>
+        <span class="lp-protocol-zone">Red</span>
+        <span class="lp-protocol-desc">지금 전문 가이던스가 필요합니다.</span>
+        <span class="lp-protocol-action">전권 통제</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ZONE CHECK CTA -->
+<section class="lp-zone-cta reveal">
+  <div class="lp-wrap">
+    <div class="lp-zone-cta-eyebrow">자가진단 · Zone Check</div>
+    <h2 class="lp-zone-cta-heading">
+      지금 당신의<br><span>Zone</span>은 무엇인가요?
+    </h2>
+    <p class="lp-zone-cta-sub">
+      5분 진단으로 현재 비즈니스 상태를 확인하세요.<br>
+      모든 데이터는 브라우저 안에서만 처리됩니다.
+    </p>
+    <a href="./zone-check/" class="lp-cta-primary full">
+      내 Zone 체크하기 <span class="lp-cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- PARTNERSHIP -->
+<section class="lp-section reveal">
+  <div class="lp-wrap">
+    <div class="lp-label">Advisory Partnership</div>
+    <div class="lp-partnership">
+      <div class="lp-partner">
+        <div class="lp-partner-name">BUCKLEY CHANG</div>
+        <div class="lp-partner-role">
+          CPA · Compliance Advisory<br>
+          세무 · 법인 · 국제 조세
+        </div>
+      </div>
+      <div class="lp-partner-divider">×</div>
+      <div class="lp-partner">
+        <div class="lp-partner-name">PARKSY</div>
+        <div class="lp-partner-role">
+          Growth & Systems<br>
+          자동화 · 제작 파이프라인
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="lp-section reveal" id="contact">
+  <div class="lp-wrap">
+    <div class="lp-label">Contact</div>
+    <div class="lp-contact">
+      <div class="lp-contact-info">
+        <div class="lp-contact-row">
+          <svg class="lp-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <a href="https://buckleychang.com">buckleychang.com</a>
+        </div>
+        <div class="lp-contact-row">
+          <svg class="lp-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <a href="mailto:buckley@parksy.world">buckley@parksy.world</a>
+        </div>
+      </div>
+
+      <div class="lp-contact-actions">
+        <button class="lp-contact-btn" onclick="saveContact()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
           Save Contact
         </button>
-        <a href="mailto:buckley@parksy.world?subject=Contact%20Buckley%20Chang" class="card-btn primary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <a href="mailto:buckley@parksy.world?subject=Advisory%20문의" class="lp-contact-btn primary">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
           </svg>
-          Contact
+          문의하기
         </a>
       </div>
 
-      <!-- Business License -->
-      <div class="card-license-section">
-        <button class="card-license-toggle" onclick="toggleLicense()">사업자등록증 보기</button>
-      </div>
-    </article>
-
-    <p class="card-footer-note">Tap card to copy link</p>
-  </div>
-
-  <!-- 사업자등록증 모달 -->
-  <div class="license-modal" id="licenseModal" onclick="closeLicenseModal(event)">
-    <div class="license-modal-content">
-      <button class="license-close" onclick="toggleLicense()">&times;</button>
-      <img src="./assets/icons/business-license.svg" alt="사업자등록증">
+      <button class="lp-license-btn" onclick="toggleLicense()">사업자등록증 보기</button>
     </div>
   </div>
+</section>
 
-  <!-- Services Showcase -->
-  <section class="services-showcase">
-    <div class="showcase-header">
-      <div class="showcase-icon">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/>
-        </svg>
-      </div>
-      <h2 class="showcase-title">Services</h2>
-      <p class="showcase-subtitle">What Buckley Handles</p>
+<!-- FOOTER -->
+<footer class="lp-footer">
+  <div class="lp-footer-inner">
+    <div class="lp-footer-signal">
+      <span class="lp-signal-dot g"></span>
+      <span class="lp-signal-dot y"></span>
+      <span class="lp-signal-dot r"></span>
     </div>
-
-    <div class="service-list">
-      <div class="service-item">
-        <div class="service-spine"></div>
-        <div class="service-content">
-          <div class="service-title">콘텐츠가 자산이 되려 할 때</div>
-          <div class="service-meta">IP 분리 · 자산 평가 · 라이선싱</div>
-        </div>
-      </div>
-
-      <div class="service-item">
-        <div class="service-spine"></div>
-        <div class="service-content">
-          <div class="service-title">개인이 기업이 되려 할 때</div>
-          <div class="service-meta">사업자 전환 · 법인 설립 · 지분 구조</div>
-        </div>
-      </div>
-
-      <div class="service-item">
-        <div class="service-spine"></div>
-        <div class="service-content">
-          <div class="service-title">수익이 국경을 넘는 흐름이 될 때</div>
-          <div class="service-meta">국제 조세 · 원천징수 · 해외 법인</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Secret Office Entry -->
-  <div class="secret-entry-bottom">
-    <a href="./staff/" class="secret-door-mini">
-      <svg class="fingerprint-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+    <p class="lp-footer-text">© 2026 BUCKLEY CHANG · PARKSY WORLD</p>
+    <a href="./card/" title="Digital Card" style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);padding:8px 0;transition:color .2s">Card</a>
+    <a href="./staff/" class="lp-footer-staff" title="Staff Portal">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
         <path d="M12 2a6 6 0 0 0-6 6v4c0 4 2 8 6 8"/>
         <path d="M18 8a6 6 0 0 0-6-6"/>
         <path d="M18 8v4c0 2.5-1 5-2 6.5"/>
@@ -181,64 +967,62 @@
       </svg>
     </a>
   </div>
+</footer>
 
-  <footer>
-    <p class="footer-text">© 2026 BUCKLEY CHANG · PARKSY WORLD</p>
-  </footer>
+<!-- LICENSE MODAL -->
+<div class="license-modal" id="licenseModal" onclick="closeLicenseModal(event)">
+  <div class="license-modal-content">
+    <button class="license-close" onclick="toggleLicense()">&times;</button>
+    <img src="./assets/icons/business-license.svg" alt="사업자등록증">
+  </div>
 </div>
 
-<div class="toast" id="toast">링크가 복사되었습니다</div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <script>
-// 명함 기능
-var businessCard = document.getElementById('businessCard');
-var toast = document.getElementById('toast');
+// NAV scroll effect
+var nav = document.getElementById('lpNav');
+window.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, { passive: true });
 
+// Scroll reveal
+var revealEls = document.querySelectorAll('.reveal');
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(function(el) { observer.observe(el); });
+
+// Toast
+var toast = document.getElementById('toast');
 function showToast(msg) {
   toast.textContent = msg;
   toast.classList.add('show');
   setTimeout(function() { toast.classList.remove('show'); }, 2000);
 }
 
-// 카드 클릭 시 링크 복사
-businessCard.addEventListener('click', function(e) {
-  if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) return;
-  navigator.clipboard.writeText('https://dtslib1979.github.io/buckleychang.com/card/').then(function() {
-    showToast('링크가 복사되었습니다');
-  });
-});
-
-// 사업자등록증 모달
+// License modal
 function toggleLicense() {
-  var modal = document.getElementById('licenseModal');
-  modal.classList.toggle('show');
+  document.getElementById('licenseModal').classList.toggle('show');
 }
-
 function closeLicenseModal(e) {
-  if (e.target === e.currentTarget) {
-    toggleLicense();
-  }
+  if (e.target === e.currentTarget) toggleLicense();
 }
 
-// 연락처 저장
+// Save contact
 function saveContact() {
-  var vcard = 'BEGIN:VCARD\n' +
-    'VERSION:3.0\n' +
-    'FN:Buckley Chang\n' +
-    'ORG:Parksy World\n' +
-    'TITLE:CPA · Reality Interface\n' +
-    'EMAIL:buckley@parksy.world\n' +
-    'URL:https://buckleychang.com\n' +
-    'NOTE:Reality Interface for the AI Economy\n' +
-    'END:VCARD';
-
+  var vcard = 'BEGIN:VCARD\nVERSION:3.0\nFN:Buckley Chang\nORG:Parksy World\nTITLE:CPA · Reality Interface\nEMAIL:buckley@parksy.world\nURL:https://buckleychang.com\nNOTE:AI 시대 1인 크리에이터 어드바이저리\nEND:VCARD';
   var blob = new Blob([vcard], { type: 'text/vcard' });
   var url = URL.createObjectURL(blob);
   var a = document.createElement('a');
-  a.href = url;
-  a.download = 'Buckley_Chang.vcf';
-  document.body.appendChild(a);
-  a.click();
+  a.href = url; a.download = 'Buckley_Chang.vcf';
+  document.body.appendChild(a); a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
   showToast('연락처가 저장되었습니다');
