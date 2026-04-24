@@ -1,0 +1,125 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "updated": "2026-04-25",
+    "description": "Hub-and-Spoke 전문가 네트워크. Buckley = Hub · Spokes = 실 서비스 제공자",
+    "hub": {
+      "name": "Buckley Chang",
+      "role": "CPA · Reality Interface",
+      "function": "판단 · 라우팅 · 리스크 분류",
+      "explicit_scope_exclusion": "Buckley 는 직접 서비스를 제공하지 않습니다. 적합한 Spoke 로 라우팅합니다."
+    }
+  },
+  "spokes": [
+    {
+      "id": "tax_advisor",
+      "category": "Compliance",
+      "name": "세무 자문",
+      "name_en": "Tax Advisory",
+      "icon": "🧾",
+      "color": "#10B981",
+      "internal_partner": "namoneygoal/slot09",
+      "external_fallback": "Independent CPA Network (Seoul)",
+      "scope": ["양도소득세", "취득세", "임대소득", "AdSense USD 신고", "종합소득세"],
+      "typical_fee": "건당 ₩300K~ · 월 리테이너 ₩500K~",
+      "zone_trigger": ["yellow", "red"]
+    },
+    {
+      "id": "legal_counsel",
+      "category": "Compliance",
+      "name": "법무·저작권",
+      "name_en": "Legal Counsel",
+      "icon": "⚖️",
+      "color": "#A78BFA",
+      "internal_partner": "namoneygoal/slot08",
+      "external_fallback": "IP-specialized Law Firms (Gangnam)",
+      "scope": ["저작권 분리", "상표등록", "계약서 검토", "크리에이터 IP 구조"],
+      "typical_fee": "자문 ₩200K/시간 · 계약서 ₩500K~",
+      "zone_trigger": ["yellow", "red"]
+    },
+    {
+      "id": "namoneygoal_accounting",
+      "category": "Operational",
+      "name": "부동산 감정·회계",
+      "name_en": "Real Estate Accounting",
+      "icon": "📐",
+      "color": "#60A5FA",
+      "internal_partner": "namoneygoal/slot10",
+      "external_fallback": "—",
+      "scope": ["담보평가", "상속/증여 감정", "사업자 부동산 회계"],
+      "typical_fee": "감정 ₩500K~ · 회계 월 ₩300K~",
+      "zone_trigger": ["yellow", "red"]
+    },
+    {
+      "id": "buddies_installation",
+      "category": "Operational",
+      "name": "사무실·인프라 설치",
+      "name_en": "Office Installation",
+      "icon": "🏢",
+      "color": "#FCD34D",
+      "internal_partner": "buddies.kr",
+      "external_fallback": "—",
+      "scope": ["사무실 임대", "인테리어", "네트워크 세팅", "소기업 풀세트 설치"],
+      "typical_fee": "패키지 ₩3M~ · 월 유지 ₩100K~",
+      "zone_trigger": ["yellow", "red"]
+    },
+    {
+      "id": "fractional_cfo",
+      "category": "Advisory",
+      "name": "Fractional CFO",
+      "name_en": "Fractional CFO",
+      "icon": "📊",
+      "color": "#F59E0B",
+      "internal_partner": "Buckley Chang (direct)",
+      "external_fallback": "—",
+      "scope": ["재무 대시보드", "현금흐름 예측", "투자자 리포팅", "법인 구조 설계"],
+      "typical_fee": "월 리테이너 $1,500~$5,000",
+      "zone_trigger": ["red"]
+    },
+    {
+      "id": "international_tax",
+      "category": "International",
+      "name": "국제 세무",
+      "name_en": "International Tax",
+      "icon": "🌍",
+      "color": "#EC4899",
+      "internal_partner": "—",
+      "external_fallback": "Premia TNC · 이김컨설팅",
+      "scope": ["크로스보더 세무", "환전 구조", "해외 법인 세무", "DTA 활용"],
+      "typical_fee": "자문 ₩400K/시간 · 구조 설계 ₩3M~",
+      "zone_trigger": ["red"]
+    },
+    {
+      "id": "delaware_corp",
+      "category": "International",
+      "name": "Delaware C-Corp 설립",
+      "name_en": "Delaware C-Corp Formation",
+      "icon": "🇺🇸",
+      "color": "#3B82F6",
+      "internal_partner": "—",
+      "external_fallback": "Stripe Atlas · Firstbase.io",
+      "scope": ["법인 설립", "EIN 발급", "Mercury/Brex 은행 계좌", "주식 발행", "Delaware Annual Report"],
+      "typical_fee": "Atlas $500 + 연간 유지 $300~$800",
+      "zone_trigger": ["red"]
+    },
+    {
+      "id": "ip_legal",
+      "category": "International",
+      "name": "IP 구조 (글로벌)",
+      "name_en": "Global IP Structure",
+      "icon": "🛡️",
+      "color": "#8B5CF6",
+      "internal_partner": "—",
+      "external_fallback": "International IP Law Firms",
+      "scope": ["로열티 구조", "IP Holding 법인", "BVI/Cayman 신탁", "매각 대비 IP 분리"],
+      "typical_fee": "구조 설계 $5,000~$15,000",
+      "zone_trigger": ["red"]
+    }
+  ],
+  "categories": {
+    "Compliance": { "label_ko": "컴플라이언스", "color": "#10B981" },
+    "Operational": { "label_ko": "운영",         "color": "#60A5FA" },
+    "Advisory":    { "label_ko": "자문",         "color": "#F59E0B" },
+    "International": { "label_ko": "국제",       "color": "#EC4899" }
+  }
+}

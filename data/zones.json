@@ -1,0 +1,122 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "updated": "2026-04-25",
+    "description": "Traffic Signal Protocol — Zone 판정 규칙 + 메시지 + Spoke 라우팅"
+  },
+  "zones": {
+    "green": {
+      "code": "GREEN",
+      "label": "No Intervention",
+      "label_ko": "관여 없음",
+      "color": "#10B981",
+      "headline": "You're in the clear zone.",
+      "headline_ko": "지금은 혼자서 충분합니다.",
+      "description": "개인 크리에이터 · 초기 수익 · 국내 플랫폼. Buckley 는 관여하지 않습니다. 스스로 기록하고 배우십시오.",
+      "cta": "자가 기록 시작하기",
+      "cta_link": "/services/#self-log",
+      "recommended_spokes": []
+    },
+    "yellow": {
+      "code": "YELLOW",
+      "label": "Auto-Review",
+      "label_ko": "자동 검토",
+      "color": "#F59E0B",
+      "headline": "You're crossing the threshold.",
+      "headline_ko": "임계값을 넘었습니다.",
+      "description": "Buckley 가 자동으로 호출되어 분기 리포트를 검토합니다. Spoke 파트너 라우팅이 활성화됩니다.",
+      "cta": "분기 진단 신청",
+      "cta_link": "/services/#quarterly",
+      "recommended_spokes": ["tax_advisor", "legal_counsel", "namoneygoal_accounting", "buddies_installation"]
+    },
+    "red": {
+      "code": "RED",
+      "label": "Full Command",
+      "label_ko": "전권 통제",
+      "color": "#EF4444",
+      "headline": "You've entered the command zone.",
+      "headline_ko": "관제탑이 필요한 영역입니다.",
+      "description": "법인 · 지분 · IP 분리 · 매각. Buckley 가 전권 관제합니다. 월 리테이너 + 글로벌 Spoke 네트워크.",
+      "cta": "월 리테이너 상담",
+      "cta_link": "/services/#retainer",
+      "recommended_spokes": ["fractional_cfo", "international_tax", "delaware_corp", "ip_legal"]
+    }
+  },
+  "triggers": [
+    {
+      "id": "monthly_revenue",
+      "label": "월 수익",
+      "label_en": "Monthly Revenue",
+      "unit": "KRW",
+      "type": "number",
+      "threshold_yellow": 3000000,
+      "threshold_red": 50000000,
+      "default": 0,
+      "max": 500000000,
+      "step": 500000,
+      "icon": "💰",
+      "description": "월 ₩3M 이상 → YELLOW · 월 ₩50M 이상 → RED"
+    },
+    {
+      "id": "foreign_payment",
+      "label": "해외 결제 건수 / 월",
+      "label_en": "Foreign Payments / month",
+      "unit": "건",
+      "type": "number",
+      "threshold_yellow": 1,
+      "threshold_red": 10,
+      "default": 0,
+      "max": 100,
+      "step": 1,
+      "icon": "🌍",
+      "description": "Stripe · Paddle · AdSense USD · Patreon · Gumroad"
+    },
+    {
+      "id": "employees",
+      "label": "직원·외주 고정 인력",
+      "label_en": "Employees / Contractors",
+      "unit": "명",
+      "type": "number",
+      "threshold_yellow": 1,
+      "threshold_red": 3,
+      "default": 0,
+      "max": 30,
+      "step": 1,
+      "icon": "👥",
+      "description": "정규 · 계약 · 프리랜서 정기 지급 대상"
+    },
+    {
+      "id": "ip_separation",
+      "label": "IP · 저작권 분리 중",
+      "label_en": "IP / Copyright Separation",
+      "type": "boolean",
+      "threshold_yellow": true,
+      "threshold_red": false,
+      "default": false,
+      "icon": "🔐",
+      "description": "개인 명의 → 법인/신탁 IP 이전 고려 중"
+    },
+    {
+      "id": "entity_inquiry",
+      "label": "법인 전환 문의",
+      "label_en": "Entity Formation Inquiry",
+      "type": "boolean",
+      "threshold_yellow": true,
+      "threshold_red": false,
+      "default": false,
+      "icon": "🏛️",
+      "description": "개인사업자 → 법인 · Delaware C-Corp · 싱가포르/홍콩 등"
+    },
+    {
+      "id": "exit_in_sight",
+      "label": "매각 · 투자 · 상장 가시권",
+      "label_en": "Exit / M&A / Investment",
+      "type": "boolean",
+      "threshold_yellow": false,
+      "threshold_red": true,
+      "default": false,
+      "icon": "🎯",
+      "description": "RED Zone 즉시 진입 트리거"
+    }
+  ]
+}
