@@ -1,0 +1,48 @@
+/* buckleychang.com 팔레트 오버라이드
+ *
+ * discord.css (phoneparis 원본) 는 gold #D4AF37.
+ * buckleychang 은 Goldman-esque 다크 + 더 깊은 골드 #c9a227.
+ * 로드 순서: discord.css → buckleychang-theme.css (반드시 뒤).
+ */
+:root {
+  --gold:    #c9a227;
+  --gold-light: #e8c547;
+  --bg:      #0a0f14;
+  --emerald: #22c55e;
+  --muted:   #8a7a4f;
+  --surface: #141c26;
+  --text:    #f8fafc;
+}
+
+/* Buckley 전용 Discord 컴포넌트 오버라이드 */
+.auth-bar button {
+  border-color: #c9a227;
+  color: #e8c547;
+  font-family: 'Cinzel', serif;
+  letter-spacing: .1em;
+}
+.auth-bar button:hover {
+  background: linear-gradient(135deg, #c9a227, #e8c547);
+  color: #0a0f14;
+  border-color: transparent;
+}
+.auth-bar .avatar { border-color: #c9a227; }
+
+/* Contact form — gold gradient */
+.dc-contact-form button,
+#dc-contact-wrap button[type="submit"] {
+  background: linear-gradient(135deg, #c9a227, #e8c547) !important;
+  color: #0a0f14 !important;
+  font-family: 'Cinzel', serif;
+  letter-spacing: .1em;
+}
+
+/* Presence dot */
+.presence::before, .dc-live-dot {
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34,197,94,.5);
+}
+
+/* Join link */
+.dc-join-link { color: #e8c547; font-family: 'Cinzel', serif; letter-spacing: .15em; }
+.dc-join-link:hover { color: #f4e4a6; }

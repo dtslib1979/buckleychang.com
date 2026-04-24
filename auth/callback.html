@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>인증 중…</title>
+<style>
+  body { background:#0F0C04; color:#D4AF37; display:grid; place-items:center; height:100vh; font-family:sans-serif; }
+</style>
+</head>
+<body>
+<p id="msg">Discord 인증 처리 중…</p>
+<script type="module">
+  const hash = new URLSearchParams(location.hash.slice(1));
+  const token = hash.get('access_token');
+
+  if (!token) {
+    document.getElementById('msg').textContent = '인증 실패. 다시 시도하세요.';
+  } else {
+    const r  = await fetch('https://discord.com/api/users/@me', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const user = await r.json();
+    localStorage.setItem('discord_user', JSON.stringify(user));
+    // 토큰을 history에서 제거 후 홈으로
+    location.replace('/');
+  }
+</script>
+</body>
+</html>
