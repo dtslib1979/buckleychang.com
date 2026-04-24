@@ -1319,7 +1319,7 @@ function saveContact() {
     if (chat) { chat.innerHTML = ''; injectChat(chat); }
     renderPresence(document.getElementById('dc-online-count'));
     const join = document.getElementById('dc-join');
-    if (join) join.href = `https://discord.gg/${CFG.GUILD_ID}`;
+    if (join) join.href = CFG.INVITE_URL || `https://discord.gg/${CFG.GUILD_ID}`;
     const wrap = document.getElementById('dc-contact-wrap');
     if (wrap) initContactForm(wrap);
   } else {

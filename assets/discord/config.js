@@ -16,6 +16,9 @@ export const CFG = {
   WB_CHAT:     "https://e.widgetbot.io/channels/1493490911278272655/1497381896844218481",
   WB_FORUM:    "https://e.widgetbot.io/channels/1493490911278272655/1497381900485005494",
 
+  // 영구 초대 링크 (Bot 자동 발급, 2026-04-25)
+  INVITE_URL:  "https://discord.gg/7dSVhYHwXr",
+
   THEME: {
     GOLD:    "#c9a227",
     BG:      "#0a0f14",

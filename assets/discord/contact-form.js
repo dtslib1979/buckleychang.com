@@ -40,7 +40,7 @@ export function initContactForm(wrapEl) {
         <p id="dc-contact-status" style="color:#10b981;font-size:.88rem;min-height:1.2em;text-align:center;"></p>
       </form>
       <p style="margin-top:1.2rem;text-align:center;">
-        <a href="https://discord.gg/${CFG.GUILD_ID}" target="_blank" rel="noopener"
+        <a href="${CFG.INVITE_URL || 'https://discord.gg/' + CFG.GUILD_ID}" target="_blank" rel="noopener"
            style="color:#9B8E6E;font-size:.85rem;text-decoration:none;">
           Discord 서버 직접 참여 →
         </a>
