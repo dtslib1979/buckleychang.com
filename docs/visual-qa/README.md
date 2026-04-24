@@ -7,7 +7,7 @@
 
 ---
 
-## 스크린샷 6개
+## 스크린샷 8개 (Discord 자동 활성 후 +2)
 
 | # | 파일 | 페이지 | 확인 요소 | 결과 |
 |:--:|---|---|---|:--:|
@@ -17,6 +17,8 @@
 | 04 | `04-services-3tier.png` | `/services/` | 4 Judgement Lanes · 3-Tier Pricing (Self-Log / Quarterly / Retainer) · Scope box (YES/NO) | ✅ |
 | 05 | `05-forum-placeholder.png` | `/forum.html` | Cinzel 헤더 "FORUM · BUCKLEY CHANG" · Discord 설정 대기 안내 | ✅ |
 | 06 | `06-staff-buckley-gate.png` | `/staff/buckley.html` | Buckley Access · Compliance Lane · Cormorant italic 제목 · Gold CTA · Growth Lane 링크 | ✅ |
+| 07 | `07-forum-LIVE.png` | `/forum.html` | **WidgetBot iframe 실제 로드** (Bot 자동 채널 생성 후) | ✅ |
+| 08 | `08-community-LIVE.png` | `/#community` | **Discord 채팅 + 작동 문의 폼** · 서버 1명 온라인 카운트 | ✅ |
 
 ---
 
