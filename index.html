@@ -70,12 +70,14 @@
   border-bottom-color: var(--border);
 }
 .lp-nav-inner {
-  max-width: 680px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 18px var(--space-lg);
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: nowrap;
 }
 .lp-nav-mark {
   font-family: var(--font-display);
@@ -95,7 +97,13 @@
   letter-spacing: 0.25em;
   color: var(--text-dim);
   text-transform: uppercase;
-  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 540px) {
+  .lp-nav-name { display: none; }      /* 좁은 폰에서 mark만 노출 */
+  .lp-nav-sep  { display: none; }
 }
 .lp-nav-cta {
   font-size: 9px;
@@ -175,18 +183,22 @@
 .lp-hero::after {
   content: 'BC';
   position: absolute;
-  right: -5%;
+  right: -3%;
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--font-display);
-  font-size: clamp(180px, 40vw, 320px);
+  font-size: clamp(140px, 28vw, 280px);
   font-weight: 700;
   color: var(--gold);
-  opacity: 0.022;
+  opacity: 0.018;
   pointer-events: none;
   letter-spacing: -0.05em;
   line-height: 1;
   user-select: none;
+  z-index: 0;
+}
+@media (max-width: 540px) {
+  .lp-hero::after { display: none; }   /* 모바일은 워터마크 숨김 (가독성) */
 }
 
 .lp-hero-wrap {
@@ -194,6 +206,7 @@
   margin: 0 auto;
   width: 100%;
   position: relative;
+  z-index: 2;
 }
 
 .lp-hero-eyebrow {
@@ -313,16 +326,25 @@
 /* avatar */
 .lp-hero-avatar {
   position: absolute;
-  top: 0; right: var(--space-lg);
-  width: 60px; height: 60px;
+  top: 96px; right: var(--space-lg);   /* nav(70px) + 26px 여백 → 겹침 제거 */
+  width: 56px; height: 56px;
   border-radius: 50%;
   border: 1px solid var(--border-gold);
   overflow: hidden;
   opacity: 0.5;
   transition: opacity 0.3s, transform 0.3s;
+  z-index: 5;
 }
 .lp-hero-avatar:hover { opacity: 0.85; transform: scale(1.05); }
 .lp-hero-avatar video { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 768px) {
+  /* 모바일에선 nav 와 nav-cta 만 보이므로 avatar 위치 더 아래로 + 작게 */
+  .lp-hero-avatar { top: 86px; width: 48px; height: 48px; }
+}
+@media (max-width: 540px) {
+  /* 진짜 작은 화면 — 아예 숨김 (헤로 텍스트 가독성 우선) */
+  .lp-hero-avatar { display: none; }
+}
 
 /* scroll indicator */
 .lp-scroll-hint {
@@ -856,8 +878,8 @@
   </div>
 </nav>
 <style>
-  .lp-nav-brand { display: inline-flex; align-items: center; text-decoration: none; color: inherit; }
-  .lp-nav-links { display: inline-flex; gap: 28px; align-items: center; margin-left: auto; }
+  .lp-nav-brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; min-width: 0; flex: 0 1 auto; }
+  .lp-nav-links { display: inline-flex; gap: 28px; align-items: center; flex-shrink: 0; }
   .lp-nav-links a {
     font-family: 'Cinzel', serif;
     font-size: .72rem;
