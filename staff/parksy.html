@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Parksy · Staff Portal</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family:'Inter','Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding:24px; }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .top { display:flex; justify-content:space-between; align-items:center; padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+  .brand { display:flex; align-items:center; gap: 14px; }
+  .brand-mark { font-family:'Cinzel',serif; font-weight:700; color:#A78BFA; letter-spacing:.3em; font-size:.9rem; }
+  .lane { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--text-muted); font-size:.9rem; }
+  .links a { font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.2em; color:var(--text-muted); text-decoration:none; margin-left:20px; }
+  .links a:hover { color: #A78BFA; }
+  .links a.active { color: #A78BFA; }
+
+  .gate { max-width: 420px; margin: 80px auto; padding: 40px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); text-align: center; }
+  .gate h2 { font-family:'Cormorant Garamond',serif; font-style:italic; margin-bottom:20px; font-size:1.6rem; color: #A78BFA; }
+  .gate input { width: 100%; padding: 14px; margin: 10px 0; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: inherit; font-size:.9rem; outline: none; }
+  .gate button { width: 100%; padding: 14px; background: linear-gradient(135deg, #7C3AED, #EC4899, #F59E0B); color: #fff; border: none; border-radius: var(--radius-sm); font-weight: 700; cursor: pointer; font-family:'Cinzel',serif; letter-spacing:.15em; margin-top: 12px; }
+  .hidden { display: none !important; }
+
+  .eyebrow { font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.3em; color:#A78BFA; margin-bottom:8px; }
+  h1.page-title { font-family:'Cormorant Garamond',serif; font-style: italic; font-size: 2.5rem; font-weight: 500; margin-bottom: 32px; }
+  h1.page-title strong { color: #A78BFA; font-style: normal; font-weight: 700; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; }
+  .card .label { font-family: 'Cinzel',serif; font-size: .65rem; letter-spacing: .25em; color: var(--text-muted); margin-bottom: 8px; }
+  .card .value { font-family: 'Cormorant Garamond',serif; font-size: 2.2rem; font-weight: 500; color: var(--text); }
+  .card .value em { color: #A78BFA; font-style: italic; }
+  .card .foot { font-size: .78rem; color: var(--text-muted); margin-top: 4px; }
+
+  .section { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 28px; margin-bottom: 24px; }
+  .section h2 { font-family:'Cinzel',serif; font-size: .8rem; letter-spacing: .25em; color: #A78BFA; margin-bottom: 20px; }
+  .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .action-btn { padding: 18px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); text-decoration: none; text-align: center; transition: all .2s; font-size: .85rem; }
+  .action-btn:hover { border-color: #A78BFA; transform: translateY(-2px); }
+  .action-btn .icon { font-size: 1.4rem; display: block; margin-bottom: 8px; }
+
+  .empty { text-align: center; padding: 40px 20px; color: var(--text-muted); font-family: 'Cormorant Garamond',serif; font-style: italic; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  th { font-family:'Cinzel',serif; font-size: .65rem; letter-spacing: .2em; color: var(--text-muted); }
+  td a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="gate" class="gate">
+    <h2>Parksy Access</h2>
+    <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px;">Growth Lane · Parksy 전용</p>
+    <input type="password" id="accessCode" placeholder="access code">
+    <button onclick="enter()">ENTER</button>
+    <p style="font-size:.7rem;color:var(--text-muted);margin-top:12px;">Buckley 접근: <a href="./buckley.html" style="color:#A78BFA;text-decoration:none;">→ Compliance Lane</a></p>
+  </div>
+
+  <div id="dashboard" class="hidden">
+    <div class="top">
+      <div class="brand">
+        <span class="brand-mark">PARKSY</span>
+        <span class="lane">Growth · System · Automation</span>
+      </div>
+      <div class="links">
+        <a href="./buckley.html">BUCKLEY</a>
+        <a href="./parksy.html" class="active">PARKSY</a>
+        <a href="./">PORTAL</a>
+        <a href="#" onclick="logout();return false;">LOGOUT</a>
+      </div>
+    </div>
+
+    <div class="eyebrow">GROWTH LANE</div>
+    <h1 class="page-title">DTSLIB <strong>ecosystem</strong> & <em>routing</em>.</h1>
+
+    <div class="grid">
+      <div class="card"><div class="label">ACTIVE REPOS</div><div class="value"><em>28</em></div><div class="foot">DTSLIB 완전수</div></div>
+      <div class="card"><div class="label">LIVE DEPLOYMENTS</div><div class="value"><em>20+</em></div><div class="foot">Vercel · GitHub Pages</div></div>
+      <div class="card"><div class="label">BUCKLEY ROUTINGS</div><div class="value"><em>—</em></div><div class="foot">이번 달 Spoke 연결</div></div>
+      <div class="card"><div class="label">YOUTUBE CHANNELS</div><div class="value"><em>15</em></div><div class="foot">15채널 배포 매트릭스</div></div>
+    </div>
+
+    <div class="section">
+      <h2>QUICK ACTIONS · PARKSY WORLD</h2>
+      <div class="action-grid">
+        <a href="https://namoneygoal.kr" target="_blank" class="action-btn"><span class="icon">🏠</span>namoneygoal</a>
+        <a href="https://phoneparis.kr" target="_blank" class="action-btn"><span class="icon">📱</span>phoneparis</a>
+        <a href="https://papafly.kr" target="_blank" class="action-btn"><span class="icon">🎌</span>papafly</a>
+        <a href="https://buddies.kr" target="_blank" class="action-btn"><span class="icon">🤝</span>buddies</a>
+        <a href="/partners/" class="action-btn"><span class="icon">🔗</span>Hub-Spoke</a>
+        <a href="/services/" class="action-btn"><span class="icon">💎</span>Services</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>DTSLIB × BUCKLEY CROSS-ROUTING</h2>
+      <table>
+        <thead>
+          <tr><th>SPOKE</th><th>INTERNAL PARTNER</th><th>TRIGGER</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>세무 자문</td><td><a href="https://namoneygoal.kr" target="_blank">namoneygoal/slot09</a></td><td>YELLOW</td></tr>
+          <tr><td>법무·저작권</td><td><a href="https://namoneygoal.kr" target="_blank">namoneygoal/slot08</a></td><td>YELLOW</td></tr>
+          <tr><td>부동산 감정·회계</td><td><a href="https://namoneygoal.kr" target="_blank">namoneygoal/slot10</a></td><td>YELLOW</td></tr>
+          <tr><td>사무실·인프라</td><td><a href="https://buddies.kr" target="_blank">buddies.kr</a></td><td>YELLOW</td></tr>
+          <tr><td>Fractional CFO</td><td>Buckley (direct)</td><td>RED</td></tr>
+          <tr><td>국제 세무</td><td>Premia TNC · 이김컨설팅</td><td>RED</td></tr>
+          <tr><td>Delaware C-Corp</td><td>Stripe Atlas · Firstbase</td><td>RED</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const LS_KEY = 'bc_staff_parksy';
+  function enter() {
+    const code = document.getElementById('accessCode').value.trim();
+    if (code !== '1126' && code !== 'parksy') {
+      alert('access code invalid.');
+      return;
+    }
+    sessionStorage.setItem(LS_KEY, JSON.stringify({ ts: Date.now() }));
+    show();
+  }
+  function logout() { sessionStorage.removeItem(LS_KEY); location.reload(); }
+  function show() {
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+  }
+  (function resume() {
+    const raw = sessionStorage.getItem(LS_KEY);
+    if (!raw) return;
+    try {
+      const { ts } = JSON.parse(raw);
+      if (Date.now() - ts > 4*3600*1000) { sessionStorage.removeItem(LS_KEY); return; }
+      show();
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>

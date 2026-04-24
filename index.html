@@ -841,12 +841,45 @@
 <!-- ── NAV ──────────────────────────────── -->
 <nav class="lp-nav" id="lpNav">
   <div class="lp-nav-inner">
-    <span class="lp-nav-mark">BC</span>
-    <span class="lp-nav-sep"></span>
-    <span class="lp-nav-name">Buckley Chang · CPA Advisory</span>
-    <a href="#contact" class="lp-nav-cta">Contact</a>
+    <a href="/" class="lp-nav-brand">
+      <span class="lp-nav-mark">BC</span>
+      <span class="lp-nav-sep"></span>
+      <span class="lp-nav-name">Buckley Chang · CPA Advisory</span>
+    </a>
+    <div class="lp-nav-links">
+      <a href="/zone-check/">Zone Check</a>
+      <a href="/partners/">Partners</a>
+      <a href="/services/">Services</a>
+      <a href="#community">Community</a>
+      <a href="#contact" class="lp-nav-cta">Contact</a>
+    </div>
   </div>
 </nav>
+<style>
+  .lp-nav-brand { display: inline-flex; align-items: center; text-decoration: none; color: inherit; }
+  .lp-nav-links { display: inline-flex; gap: 28px; align-items: center; margin-left: auto; }
+  .lp-nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: .72rem;
+    letter-spacing: .2em;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .lp-nav-links a:hover { color: var(--gold); }
+  .lp-nav-links a.lp-nav-cta {
+    color: var(--gold);
+    padding: 6px 16px;
+    border: 1px solid var(--border-gold);
+    border-radius: 999px;
+  }
+  .lp-nav-links a.lp-nav-cta:hover {
+    background: var(--gold-dim);
+  }
+  @media (max-width: 768px) {
+    .lp-nav-links a:not(.lp-nav-cta) { display: none; }
+  }
+</style>
 
 <!-- ── HERO ─────────────────────────────── -->
 <section class="lp-hero">
@@ -1085,6 +1118,61 @@
   </div>
 </section>
 
+<!-- ── COMMUNITY ─────────────────────────── -->
+<section class="lp-section reveal" id="community">
+  <div class="lp-wrap">
+    <div class="lp-label">Community</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:500;line-height:1.1;margin-bottom:20px;">
+      Private <em style="color:var(--gold);font-style:italic;">Discourse</em><br>
+      among builders.
+    </h2>
+    <p style="font-size:1rem;color:var(--text-secondary);line-height:1.7;max-width:580px;margin-bottom:48px;">
+      Zone 진단을 받은 멤버들의 비공개 채널. 세무 · 법무 · 글로벌 구조 실시간 토론.
+      YouTube 자동 업데이트 · Discord Webhook 기반 문의.
+    </p>
+
+    <div class="community-grid">
+      <div class="community-card">
+        <h3 style="font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.25em;color:var(--gold);margin-bottom:20px;">
+          LIVE · DISCORD
+        </h3>
+        <div class="dc-presence" style="margin-bottom:14px;font-size:.82rem;color:var(--text-muted);">
+          <span class="dc-live-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--emerald);animation:pulse 2s infinite;"></span>
+          <span style="margin-left:8px;">서버 · <strong id="dc-online-count" style="color:var(--gold-pale);">—</strong>명 온라인</span>
+        </div>
+        <div id="discord-chat" style="height:420px;background:var(--bg);border-radius:var(--radius-md);border:1px solid var(--border);overflow:hidden;"></div>
+        <a id="dc-join" href="#" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;color:var(--gold);text-decoration:none;">
+          DISCORD 서버 초대장 →
+        </a>
+      </div>
+
+      <div class="community-card">
+        <h3 style="font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.25em;color:var(--gold);margin-bottom:20px;">
+          INQUIRY · WEBHOOK
+        </h3>
+        <div id="dc-contact-wrap"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<style>
+  .community-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 40px;
+  }
+  @media (max-width: 768px) { .community-grid { grid-template-columns: 1fr; } }
+  .community-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+</style>
+
 <!-- ── CONTACT ───────────────────────────── -->
 <section class="lp-section reveal" id="contact">
   <div class="lp-wrap">
@@ -1214,5 +1302,33 @@ function saveContact() {
   showToast('연락처가 저장되었습니다');
 }
 </script>
+
+<!-- ==================== DISCORD MODULES ==================== -->
+<link rel="stylesheet" href="/assets/discord/discord.css">
+<link rel="stylesheet" href="/assets/discord/buckleychang-theme.css">
+<script type="module">
+  import { CFG } from '/assets/discord/config.js';
+  import { initContactForm } from '/assets/discord/contact-form.js';
+  import { injectChat } from '/assets/discord/widget-embed.js';
+  import { renderPresence } from '/assets/discord/presence.js';
+
+  const hasReal = !CFG.CH_ID.startsWith('PLACEHOLDER');
+
+  if (hasReal) {
+    const chat = document.getElementById('discord-chat');
+    if (chat) { chat.innerHTML = ''; injectChat(chat); }
+    renderPresence(document.getElementById('dc-online-count'));
+    const join = document.getElementById('dc-join');
+    if (join) join.href = `https://discord.gg/${CFG.GUILD_ID}`;
+    const wrap = document.getElementById('dc-contact-wrap');
+    if (wrap) initContactForm(wrap);
+  } else {
+    const chat = document.getElementById('discord-chat');
+    if (chat) chat.innerHTML = '<div style="padding:40px;text-align:center;color:var(--text-muted);font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:.9rem;">Discord 채널 ID 입력 후 실시간 채팅 활성화</div>';
+    const wrap = document.getElementById('dc-contact-wrap');
+    if (wrap) wrap.innerHTML = '<div style="padding:24px;background:var(--bg);border-radius:12px;color:var(--text-muted);font-family:\'Cormorant Garamond\',serif;font-style:italic;font-size:.9rem;text-align:center;">Discord Webhook URL 입력 후 문의 폼 활성화</div>';
+  }
+</script>
+
 </body>
 </html>
