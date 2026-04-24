@@ -20,7 +20,7 @@ jobs:
       - name: Fetch Discord 공지 채널 메시지
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          CHANNEL_ID: "1493491702936240130"
+          CHANNEL_ID: "1497381896844218481"
         run: |
           if [ -z "$DISCORD_BOT_TOKEN" ]; then
             echo "DISCORD_BOT_TOKEN 미설정 — 스킵"

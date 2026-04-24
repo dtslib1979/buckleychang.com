@@ -1,22 +1,21 @@
 // SSOT — phoneparis/papafly/namoneygoal 와 동일 GUILD 공유
-// 박씨 입력 대기 (4값): CH_ID · WEBHOOK · FORUM_CH · (선택 YouTube channelId)
-//
-// 동일 GUILD 에 buckleychang 전용 채널 3개만 생성 → CH_ID/FORUM_CH/Webhook URL 복사
+// Bot 자동 생성 완료 (2026-04-25)
+//   카테고리: buckleychang (1497381894633947157)
+//   채팅:    buckleychang-chat (1497381896844218481)
+//   문의:    buckleychang-inquiry (1497381898559819848)
+//   포럼:    buckleychang-forum (1497381900485005494)
 export const CFG = {
-  GUILD_ID:    "1493490911278272655",                // 공유 (phoneparis/papafly/namoneygoal)
-  OAUTH_CID:   "1492464128865075350",                // OAuth 앱 공유
+  GUILD_ID:    "1493490911278272655",
+  OAUTH_CID:   "1492464128865075350",
   CACHE_BASE:  "https://dtslib1979.github.io/dtslib-papyrus/data/channels",
 
-  // ↓↓↓ 박씨 입력 대기 ↓↓↓
   REPO:        "buckleychang.com",
-  CH_ID:       "PLACEHOLDER_CHANNEL_ID",
-  WEBHOOK:     "PLACEHOLDER_WEBHOOK_URL",
-  FORUM_CH:    "PLACEHOLDER_FORUM_CHANNEL_ID",
-  WB_CHAT:     "https://e.widgetbot.io/channels/1493490911278272655/PLACEHOLDER_CHANNEL_ID",
-  WB_FORUM:    "https://e.widgetbot.io/channels/1493490911278272655/PLACEHOLDER_FORUM_CHANNEL_ID",
-  // ↑↑↑ 입력 대기 끝 ↑↑↑
+  CH_ID:       "1497381896844218481",
+  WEBHOOK:     "https://discord.com/api/webhooks/1497381903198716036/QZmoYqmmg8JfWYWRUCqaAo1MqUeKhXkVEd8NqfGORTvciwYv5gTnVESiayxB8CvuMcdC",
+  FORUM_CH:    "1497381900485005494",
+  WB_CHAT:     "https://e.widgetbot.io/channels/1493490911278272655/1497381896844218481",
+  WB_FORUM:    "https://e.widgetbot.io/channels/1493490911278272655/1497381900485005494",
 
-  // Buckley Chang 전용 팔레트 (Dark + Gold)
   THEME: {
     GOLD:    "#c9a227",
     BG:      "#0a0f14",
