@@ -1,8 +1,1 @@
-[
-  {
-    "id": "placeholder",
-    "author": { "username": "BUCKLEY CHANG" },
-    "content": "Reality Interface for the AI Economy. Buckley 는 판단하고, Spoke 가 실행합니다. Discord 채널 활성화 대기 중.",
-    "timestamp": "2026-04-25T00:00:00.000Z"
-  }
-]
+[{"type":0,"content":"","mentions":[],"mention_roles":[],"attachments":[],"embeds":[{"type":"rich","title":"\ud83e\ude99 BUCKLEY CHANG \u00b7 Reality Interface","description":"AI \uc2dc\ub300 1\uc778 \ud06c\ub9ac\uc5d0\uc774\ud130\ub97c \uc704\ud55c \uc5b4\ub4dc\ubc14\uc774\uc800\ub9ac.\n\n**The Hub decides. The Spokes deliver. You stay in the work.**","color":13214247,"fields":[{"name":"\ud83d\udea6 Zone Check","value":"[buckleychang.com/zone-check](https://buckleychang.com/zone-check/)","inline":true},{"name":"\ud83d\udd17 Hub-Spoke","value":"[/partners](https://buckleychang.com/partners/)","inline":true},{"name":"\ud83d\udc8e Services","value":"[/services](https://buckleychang.com/services/)","inline":true}],"footer":{"text":"Parksy World \u00b7 2026"},"content_scan_version":0}],"timestamp":"2026-04-24T23:41:56.168000+00:00","edited_timestamp":null,"flags":0,"components":[],"id":"1497382114738438187","channel_id":"1497381896844218481","author":{"id":"1492464128865075350","username":"dtslib","avatar":null,"discriminator":"9796","public_flags":0,"flags":0,"bot":true,"banner":null,"accent_color":null,"global_name":null,"avatar_decoration_data":null,"collectibles":null,"display_name_styles":null,"banner_color":null,"clan":null,"primary_guild":null},"pinned":false,"mention_everyone":false,"tts":false}]
