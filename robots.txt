@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://buckleychang.com/sitemap.xml
+
+Disallow: /backoffice/
+Disallow: /.hq/
