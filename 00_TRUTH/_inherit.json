@@ -8,5 +8,8 @@
     "defaults": "override-allowed"
   },
   "created": "2026-01-26",
-  "overrides": []
+  "overrides": [],
+  "narrative": "Parksy World Reality Interface — 개인→기업 전환 판단 Traffic Signal(Green/Yellow/Red). 세금/법인/IP 리스크 분류 시스템. Independent 후보 (자체 OS 구축 중)",
+  "fab_route": "RT-θ",
+  "pipeline_position": "branch / legal-financial-consultant"
 }
